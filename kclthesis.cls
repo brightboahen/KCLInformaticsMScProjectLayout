@@ -57,15 +57,15 @@
 \newcommand*{\modulecode}[1]{\gdef\@modulecode{#1}}
 \newcommand*{\@modulecode}{\red{Missing Module Code}}
 \newcommand*{\department}[1]{\gdef\@department{#1}}
-\newcommand*{\@department}{\red{Missing Department}}
+\newcommand*{\@department}{\red{Department of Informatics}}
 \newcommand*{\submissiontitle}[1]{\gdef\@submissiontitle{#1}}
-\newcommand*{\@submissiontitle}{\red{Missing Submission title}}
+\newcommand*{\@submissiontitle}{\red{Adaptive User Interface}}
 \newcommand*{\studentnumber}[1]{\gdef\@studentnumber{#1}}
-\newcommand*{\@studentnumber}{\red{Missing Studentnumber}}
+\newcommand*{\@studentnumber}{\red{K1594570}}
 \newcommand*{\programme}[1]{\gdef\@programme{#1}}
-\newcommand*{\@programme}{\red{Missing Program}}
+\newcommand*{\@programme}{\red{MSc Web Intelligence}}
 \newcommand*{\supervisor}[1]{\gdef\@supervisor{#1}}
-\newcommand*{\@supervisor}{\red{Missing supervisor}}
+\newcommand*{\@supervisor}{\red{Dr. Koulouri Lela}}
 \newcommand*{\wordcount}[1]{\gdef\@wordcount{#1}}
 \newcommand*{\@wordcount}{\red{Missing wordcount}}
 \newcommand*{\signdate}[1]{\gdef\@signdate{#1}}
