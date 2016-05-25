@@ -1,25 +1,67 @@
 \section{Introduction}
 \subsection{Project Aims, Objectives and Introduction} 
-The notion of user interfaces or software applications adapting to its users has been around for several years, gathering an enormous interest in the research community. Over the years a lot of technological advancements have been made in addtion to standards and tecniques to achieve adaptiveness on the user facing or interface layer of software applications.
+The notion of user interfaces or software applications adapting to its users has been around for several years, gathering an enormous interest in the research community. Over the years a lot of technological advancements have been made in addition to standards and techniques to achieve adaptiveness on the user facing or interface layer of software applications.
 
 In recent years,the need for applications to proactively implement such techniques has increased, especially in the Enterprise Software industry where developers strive to develop softwares that are highly efficient and almost completely eradicates the potential of human errors and the costs that come with it. By so doing, users of the software application must all use it the same way, information is presented the same way and must all reason about the information being present in more or less the same manner in order to get any useful result out of using the said application.
 
-These applications disregard the fact that people or the users will form different mental models of their interactions with the system and have different ways of learning and retaining knowledge and skills. For example if the user is left or right brained.[The split brain in man].
-
+These applications disregard the fact that people or the users will form different mental models of their interactions with the system and have different ways of learning and retaining knowledge and skills. For example if the user is left or right brained \cite{gazzaniga1967split}
 The teaching profession is one of the oldest professions and as such belongs well documented and structured industry; teachers perform very specific but arduous daily tasks in addition to teaching. There have been numerous applications developed over the years to aide their work but these applications fall under \emph{Enterprise Software} where the need to produce cost effective but applications that are extremely efficient at achieving their functional superceeds the needs of the individual user.
 
 Teachers like many other users that happen to use such applications spend hours if not weeks learning how to use these applications, instead of spending those hours on teaching materials; these applications more often than not are very rigid and do not alter their layout with the exception of perhaps the content to suit the current user.
 
 In this project we develop a user interface system for a classroom management application that changes its layout structure and elements to suit the needs of the user (teacher) and also provides the flexibility for the user to change the interface structure and elements themselves.
 
-We prove that this can be achieved by using Web components[cite web components] structure and implementing these elements as reusable components that subscribe to Adaptive User Interface paradigms and techniques[Refer to techniques].
+We prove that this can be achieved by using Web components \cite{website:Mozilla-Developer} structure and implementing these elements as reusable components that subscribe to Adaptive User Interface paradigms and techniques.
 
 We have built a system comprising several of these components, task and user models as well as intelligent agents to achieve a level of adaptiveness. The result is a system that puts the user first by altering its layout to suit the current user.
 
 In the next section we will talk about the background Adaptive User Interface and review some relevant literature to this project, discussing the various and current trends in Adaptive User Interfaces, existing projects that aim to solve this problem and explore the advantages and disadvantages of . This will be followed by the discussion of the methodologies and the approaches used in this project and then we conclude by looking at what this project has achieved with regards to what it initially set out to do and what can be done to improve on it. 
 \subsection{Background and Literature Survey} \label{sub:background}
- It gives an overall picture about the work with a clear review of the relevant literature.  The background of the project should be given.  What have been done to deal with the problem should be stated clearly.  The pros and cons of various existing algorithms and approaches should be stated as well.  Differences between your proposed method and the existing ones should be briefly described.
+In its salient form, an adaptive user interface or system monitors the users interaction with the system or interface and then tries to identify a pattern in the system's usage attributed to user difference s in order to automatically adjust the interface components or content to allow for such user differences as awell as changes in user skills, knowledge and preferences.
 
-The following links may help on the literature review:
-IEEE Xplore digital library: a resource for accessing IEEE published scientific and technical publications (You must be with King's network to get access to the digital library)
-ScienceDirect.com: an electronic database offering journal papers not published by IEEE (You must be with King's network to get access to the database)
+We see examples of such mechanisms in our daily usage of our smart phones, laptops and or on our favourite social media platforms. Facebook's advertising feature shows products unique to users based on what their adaptive system has identified as a pattern associated to the user.On our smartphones, features like the predictive text is a form of adaptiveness. It learns and tries to improve a users texting or typing experience.
+\subsubsection{A brief history of user interfaces} \label{sub:history}
+The concept of \emph{user interfaces} surfaced in the 1960's, when in 1963 Ivan Sutherland published his MIT PhD thesis about a system called \textbf{Sketchpad} \cite{sutherland1964sketch}.
+The result of Ivan Sutherland's Sketchpad was a pioneering graphical user interface (GUI) and direct manipulation system. Sketchpad allowed the user to create graphic images directly on the computer screen using a lightpen \cite{patrick2003intelligent}.
+Prior to the early 1970's, researchers focused primarily on new technologies but this trend changed in 1970 when the focuse shifted from developing and discovering new technologies to the user's interaction with a machine.
+By the 1980's the study of human and computer interaction had changed into a user-centered research field with usability as its main goal and technology as a supporting tool.\cite{patrick2003intelligent}
+This led to the emergence of Intelligent User Interfaces(IUI) as a subfield of study of Human-Computer Interaction. IUI came into prominence in the early 1990's with microsoft releasing their office assistant help system in 1997.
+\subsubsection{Why Adaptive User Interfaces?}
+Pioneering computer softwares were designed and developed to solve business and scientific problems in predetermined way that allowed only very constrained user input, through arguments provided to the program at runtime.\cite{langley1997machine}.
+
+If we observe how we interact with computers now and the design of computer software, we can conclude that a lot has changed; software now accept and support frequent user input. Modern day interfaces try to be intuitive by using a desktop metaphor which consists of multiple ``windows'' showing folders and documents \cite{patrick2003intelligent}
+
+On the other hand, one important obstacle in the way of current interactive systems is that they have little ability to take into account differences in the knowledge, style and preferences of the user \cite{langley1997machine}.
+Systems like document production (microsoft word) and Enterprise Systems lets a user select a set of predefined or default styles and even store their own variations, but these processes tend to be manual and tedious. \cite{langley1997machine}.
+
+Clearly there is the need for adaptability and personalisation to reduce the manual process and cognitive skills required in using or interacting with computer software. Most applications that have attempted to implement adaptive user interfaces have required the users explicitly state their preferences to the interface. This is a tiresome process and most importantly, some user styles may be reflected in a user's behaviour but not subject to conscious inspection \cite{langley1997machine}.
+
+This has led to the user of Artificial Intelligence techniques to deal with different forms of input and output and to try and help the user in an intelligent way. These interfaces try to solve the problems that current Direct Manipulation (DM) systems cannot. As in \cite{patrick2003intelligent},these include:
+\begin{itemize}
+\item Creating Personalised Systems; different people form different mental models of an application or system. This needs to be accounted for as what would make complete sense to user A would not make sense to user B.
+\item Information overflow ; Information overflow or filtering has been a major problem for direct manipulation systems. This process can be likened to finding a needle in a haystack.
+\item IUI provides other forms of interaction, for example speech recognition, gesture instead of using the mouse.
+\item Taking over tasks from the user and providing help on using new and complex systems.
+\end{itemize}
+In this project we will explore the landscape of the techniques used currently to solve the above problems and implement a variation of it where applicable.
+\subsubsection{Properties of Intelligent User Interfaces}
+IUI are designed primarily to improve communication between the user and machine. The techniques used to achieve this improvement is trivial as long as the improvement can be considered ``intelligent''.
+There are several types of techniques that are being used widely in intelligent user interfaces; namely:
+\begin{itemize}
+\item Intelligent input technology; uses innovative techniques. this includes natural language, gesture and tracking recognition, facial expression recognition, gaze tracking and lip reading \cite{patrick2003intelligent}.
+\item User modelling; This technique allows a system to proactively maintain or infer knowledge about a user based on input received by the system \cite{langley1997machine}.
+\item Explanation generation; This envelopes all techniques that al- low a system to explain its results to a user, example tactile feedback in virtual reality environment or information visualisation.
+\end{itemize}
+\subsection{Applications using Adaptive Concepts}
+Adaptive System Concepts has been extensively reviewed by various researchers, Benyon and Murray\cite{benyon1993applying}, Norcio and Stanley\cite{norcio1989adaptive} have all provided useful reviews. One of the issues with areas such as Adaptive Systems is that identical concepts have come out of different disciplines. These disciplines adopt their own terminology which makes the comparison and generalisation problematic. The list of systems provided below depict some of the various systems that can be described as ``intelligent''.
+\subsubsection{Intelligent User Interfaces}
+As mentioned earlier, IUI is a subfield of Human-Computer Interaction; Adaptive User Interfaces(AUI) is a subtype of IUI. In \ref{sub:background} we gave a simple description of AUI. A ``normal'' interface simply defines a channel of communication between a human user and a machine, whereas an ``intelligent'' one adapts to the user, communicates with the user and solves problems for the user.
+However, not all intelligent interfaces have the ability to learn and solve problems. Many interfaces we call intelligent focuses on the communication channels between the user and machine \cite{patrick2003intelligent}.
+\subsubsection{Natural Language Systems}
+Natural Language systems as the name implies, try to adapt to the user by generating text appropriate to the specific query and characteristics of individual users, much like Apple Inc's Siri \cite{website:SIRI}. These systems approach this problem by inferring the user's needs and focus of attention from the use of natural language \cite{benyon1993adaptive}
+\subsubsection{Intelligent Tutoring Systems}
+ITS systems of the notion that given a student(s) and topic(s) a computer system can alleviate the variance of human-based teaching skills and can determine the best manner in which to present individually targeted instruction in a constrained subject domain \cite{benyon1993adaptive}. ITS are analogous to AES ( Adaptive Educational Systems); AES monitor the important learner characteristics and makes the appropriate adjustments to support and enhance learning experience for the learner \cite{shute2012adaptive}.
+\subsection{Adaptivity at a cost}
+Complete AUI are hard to come by, this can be attributed to the fact that, the unpredictability and autonomy required for a complete aui reduces a systems usability another contributing factor is that users suffer difficulty in forming ade- quate mental models of such systems. there has been proposals on creating support systems to aide users form adequate mental models \cite{paymans2004usability}.
+\subsection{Summary}
+To sum up this chapter ; we have seen a brief history of user interfaces, looked at how why it is needed and how it is being implemented and used today. We have also seen the costs that come with full adaptive system and the suggestions and or proposals that have been made to remedy this issue. we can conclude that, there is the need to pursue and improve on human computer interaction. There a variety of techniques that are being used and we have looked at some of them, there is one constant and that is the user and the importance of modelling the user as a knowledge base for the system to base its decisions on.
