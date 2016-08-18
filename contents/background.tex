@@ -1,0 +1,103 @@
+\section{Design Requirements}
+\subsection{User Requirements}
+\subsubsection{Introduction}
+The project aims to develop a classroom management tool that works based on the theories discussed in the literature review chapter and also draws \emph{Adaptive User Interface} techniques to improve the users interaction with the systems interface. The following are what the user should require from the system. The requirements are given ranks.\footnote{ Mandatory :- the feature must be built into the final system; Desirable :- the feature must be built into the final system if time permits; Possible Enhancement :- the feature could be included as a future work}
+
+\subsubsection{Account Registration - Mandatory}
+The systems interface provides a registration mechanism for new users to create an account. This mechanism requires the user to choose a password and email account that when validated would be used by the user for subsequent access to the system.
+
+\subsubsection{Login - Mandatory}
+This component forms part of the registration mechanism and it accepts the email address and password the user used in the registration process to authenticate the user and allow access to the system. 
+
+\subsubsection{Logout - Mandatory}
+Users can log out of the system once they have been authenticated and are in the system. This provides them with a safe and secure way to leave the system and preserve the current state.
+
+\subsubsection{Add class groups - Mandatory}
+System interface will give users the feature to add new class groups to their workspace once they have been authenticated and granted access to the sytem. 
+
+\subsubsection{Create seating arrangements - Mandatory}
+The classroom component of the system's interface will provide a canvas for the user to create a seating plan in free form, \footnote{free form - denotes the canvas has no grid constraints and that the user can have any shape to the seating arrangements}. The classroom renders only thirty (30) cards, \footnote{cards represent pupils or students on the classroom space} as OFSTED \cite{OFSTED} states that is the optimal number of students any one teacher can effectively manage in a classroom.
+
+\subsubsection{Upload pupil data - Mandatory}
+The upload component can allow users to upload pupil data in a standard format,\footnote{Comma Separated Values (csv)} into the system.
+
+\subsubsection{Save seating plans - Mandatory}
+The history manager component of the user interface can save the current seating plan that the user is using at any point in time.
+
+\subsubsection{Retrieve seating plans - Mandatory}
+History manager component can also retrieve old seating plans or arrangements that relate to the user.
+
+\subsubsection{Update seating plans - Mandatory}   
+As well as saving and retrieving, the history manager component can update old seating arrangements with the current arrangements on the canvas(classroom space).
+
+\subsubsection{Scoring System - Mandatory}
+The history item component provides a scoring feature that allows the user to score or rate the plans and or seating arrangements that they use.
+
+\subsubsection{Delete year groups - Desirable}
+The menu tab component of the system interface can delete the current year group selected by the user.
+
+\subsubsection{Edit year group name - Desirable}
+The menu tab component can also edit the name of the currently selected year group by the user.
+
+\subsubsection{Delete class group - Desirable}
+The menu item component can delete the currently selected class. 
+
+\subsubsection{Edit class group name - Desirable}
+The menu item component can edit the name of the currently selected class.
+
+\subsubsection{Delete old seating arrangements - Desirable}
+The history manager can delete old seating arrangements that are of no relevance to the user.
+
+\subsubsection{Google Spreadsheet Integration - Possible Enhancement}
+The upload can upload pupil data from google spreadsheet application programming interface if the user has pupil data located on the google spreadsheet system.
+
+\subsubsection{Report Generation - Possible Enhancement}
+The information component can generate reports on best or optimal seating arrangements used by the user.
+
+\subsection{Functional Requirements}
+The system interface must provide components that allows the following functionalities.
+\subsubsection{Authentication}
+The user interface of the system must authenticate the user on registration and on logging in.
+
+\textbf{Rationale} - This provides security and restricts access to system data and also allows the system to tailor its features and functionalities to the user based on their unique session ids.
+
+\subsubsection{Account Creation}
+The system must allow new users to the system to create their own accounts.
+
+\textbf{Rationale} - This is the only mechanism through which potential users can obtain access to the system.
+
+\subsubsection{Log in to user account}
+The system must provide users the ability to sign into their account, if they are returning users.
+
+\textbf{Rationale} - Users need to be able to return to use the system.
+
+\subsubsection{Log out of user account}
+The system must provide users with the ability to log out of the system.
+
+\textbf{Rationale} - This allows the system to safely save the users state and protect the users data by protecting against unauthenticated access.
+
+\subsubsection{New class groups}
+The system must allow both new and old users to add new class groups to their workspace.
+
+\textbf{Rationale} - Users are more likely to teach more than one class.
+
+\subsubsection{CRUD Seating Arrangements}
+The system must provide users the ability to CRUD\footnote{Create, Update, Delete} seating arrangements or plans on the user interface.
+
+\textbf{Rationale} - This is the core functionality of the system, the system would not be a classroom management tool if it lacked the ability to perform seating arrangements.
+
+\subsection{Non-Functional Requirements}
+This section highlights the overall properties of the system.The following sections specifies standards that can be used to form an opinion of the overall operation of the system.
+
+\subsubsection{Security}
+The system shall be secure by only giving direct access to the system and its features to authenticated users. The authentication is provided by a trusted third-party solution. Firebase \cite{website:Firebase} a backend as a service platform.
+
+\subsubsection{Data Integrity}
+
+\subsubsection{Usability}
+
+\subsubsection{Reliability}
+
+\subsection{System Design}
+
+\subsection{System Architecture}
