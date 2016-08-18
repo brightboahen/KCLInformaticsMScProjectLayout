@@ -82,22 +82,93 @@ The system must allow both new and old users to add new class groups to their wo
 \textbf{Rationale} - Users are more likely to teach more than one class.
 
 \subsubsection{CRUD Seating Arrangements}
-The system must provide users the ability to CRUD\footnote{Create, Update, Delete} seating arrangements or plans on the user interface.
+The system must provide users the ability to CRUD\footnote{Create, Update, Delete} seating arrangements or plans on the user interface.This feature must be adaptive in that, it should alter seating rules to suit the preferences of the user.
 
 \textbf{Rationale} - This is the core functionality of the system, the system would not be a classroom management tool if it lacked the ability to perform seating arrangements.
 
 \subsection{Non-Functional Requirements}
-This section highlights the overall properties of the system.The following sections specifies standards that can be used to form an opinion of the overall operation of the system.
+This section highlights the overall properties of the system.The following sections specifies standards that can be used to form an opinion of the overall operation of the system. The project is mainly concerned with the user interface of the whole system and as a result uses Firebase\cite{website:Firebase}, a platform that provides infrastructure and backend as a service. The use of Firebase makes it possible to provide requirements such as security and data integrity out of the box, allowing the project to focus on its main purpose and that is to create an adaptive user interface for a classroom management tool.
 
 \subsubsection{Security}
-The system shall be secure by only giving direct access to the system and its features to authenticated users. The authentication is provided by a trusted third-party solution. Firebase \cite{website:Firebase} a backend as a service platform.
+The system shall be secure by only giving direct access to the system and its features to authenticated users. The authentication is provided by a trusted third-party solution, Firebase \cite{website:Firebase}. The encryption and security features provided by Firebase shall make the account registration, log in and logout operations of the system secure.
 
 \subsubsection{Data Integrity}
+Firebase also provides real-time database management API\footnote{Application Programming Interface}. The accuracy of user data submitted to the system are consistently stored through this process. This features ties in with the security features by providing access control and data validation, example all emails and passwords used in registration are all validated before the process is complete. The upload component of the system also validates all pupil data uploaded to make sure they are in the required document format.\footnote{the use of format here refers to CSV}
 
 \subsubsection{Usability}
+The purpose of the project revolves around the ease of use of a classroom management tool. The system shall provide an interface that improves on its interaction with the user and has clarity in this interaction. It takes 3 steps for the user to go from a new user to a classroom with pupil data and seating plan, recording 5 clicks in the process. A returning user can create a new classroom with pupil data all in one step, subject to the information the system will have about him or her. These steps are all clear and on a clean user interface. 
 
 \subsubsection{Reliability}
+The system shall provide reliability with regards to its ability to perform required functions.Data storage and retrieval, access control are provided by a state of the art system that is Firebase. The systems clean user interface shall be reliable in creating a classroom space and suggesting the optimal seating arrangement for the user.
+
+\subsubsection{Performance}
+Performance with regards to this project is concerned with the interfaces reaction to how the user uses the system and how it makes recommendations to the user. The system shall start monitoring the user immediately after the sign up process and resume on subsequent sign ins. 
 
 \subsection{System Design}
+Controllability, predictability and transparency are some of the important influences in designing effective systems \cite{hook1995glass}. \cite{rudisill1996human} maintains that the user should enjoy using the system. These factors were taken into consideration during the designing of the system. We attempt to improve the user's experience rather than substitute them. Figure \ref{fig:SystemDesign} below reflects these guidelines in our system design.
+
+\begin{figure}[!ht]
+\caption{System Design}
+    \label{fig:SystemDesign}
+    \centering
+    \includegraphics[scale=0.5]{figures/SystemDesign}
+\end{figure}
+
+
+The user of our system mainly interacts with the UI(User Interface) performing all relevant actions and steps, the UI contains the classroom area but the component responsible for the functionality is a specialised component in that it gathers information from the user that the general UI component does not have room for. Example the seating arrangement currently on the canvas(seating floor). A \emph{User Model} is created out of the information gathered by these components. The recommendation model recommends optimal seating arrangements based on the user model. 
+
+\subsubsection{User Model}
+The principal purpose of adaptation is to offer a simple, powerful and efficient interface to the user. We will be developing a system that offers such an interface by using the \emph{User Model} approach. By definition a \emph{User Model} is a representation of the knowledge and preferences of the user, these representations are depicted in the form of variables in the system.
+
+\subsubsection{User Interface}
+Creating an interface with complete autonomy comes at a cost, as it affects the usability of the whole system.  We take the \emph{User Model} approach as it will not reduce the usability of the system. \emph{User Model} allows us to be able to identify tasks that we can assist the user in, by performing user analysis. \emph{User Analysis} comprises what the user needs to do in the system and what the user will do with the system.
+
+We will only adapt :
+\begin{itemize}
+    \item the system where users are least adaptable,
+    \item to features which have the largest impact on interaction,
+    \item to the needs of intermittent and discretionary users. \cite{benyon1993adaptive} 
+\end{itemize}
+
+We can achieve this through a \emph{User Model} because we have a representation of the users and their interaction with the system, we can alter the interface without costing the user clarity in interaction.
+
+
+\subsubsection{User Modeling}
+User Modeling is the process of obtaining information about the user, this can done in numerous ways but we gather information:
+\begin{itemize}
+    \item  implicitly,
+    \item  explicitly.
+\end{itemize}
+
+\textbf{Explicit Collection} - We gather information about the user explicitly through the registration form, settings form, login form and the seating arrangement scoring card. These are explicit as we ask the user for information such as the subject they teach, menu layout and their best seating arrangements.
+
+\textbf{Implicit Collection} - We also gather information implicitly through the forms, information such as when the user logs in and when they logged out to infer the time spent on the system. How often they toggle(open and close) the menu tray and also make computations based on their highest scoring seating arrangements to determine the adaptation rule to apply when recommending seating arrangements to the user.\ref{fig:User-Model}
+
+The system is designed to adapt its rules, that is, what it perceives to be the best and optimal seating plan to suit or match what the user actually perceives to be the best and optimal seating.We adopt this format of adaptation because the theories backing classroom management are not fool-proof and that what the theories suggests could be completely wrong for a particular classroom and teacher.
+
+\subsubsection{Classroom Canvas}
+The classroom canvas is used to create and update seating plans. This is where the rendering of pupils and their seating positions is performed, the classroom component has an instance of the \emph{recommendation object}. The seating patterns are recorded and stored by the \emph{history manager} component responsible for storing, retrieving and updating seating plans. The recommendation is initiated when the user starts to manipulate pupil seating positions on the canvas. A green outline on the pupil card suggests the pupil is paired or put in the best position as suggested by the rules currently being applied. A red outline suggests the position or pairing is not optimal. The user can of course ignore this - the plan they save as a result can be considered as an optimal plan or arrangement if they score it above 4 points. Each seating arranged store by the manager is given a score out of 5. The scoring is at the discretion of the user.
 
 \subsection{System Architecture}
+Our system uses a 2 tier system architecture, a presentation layer comprising the user interface and a resource layer (server) provided by Firebase \cite{website:Firebase}. Firebase facades all the details of a server, database and security from the project so we are able to focus primarily on the presentation layer (User Interface). The figure below illustrates the top level architecture of the system.
+\begin{figure}[!ht]
+\caption{System Architecture - Top Level}
+    \label{fig:SystemArchitecture}
+    \centering
+    \includegraphics[scale=0.5]{figures/SystemArch}
+\end{figure}
+Figure \ref{fig:SystemArchitecture} below shows the main components that make up our system in their respective layers.
+\subsubsection{Front controller}
+The front controller provides our system with a single point of entry to handle requests and provides navigation from one component view to the other as the user performs tasks in our system. Our system is concerned with the User Interface therefore a simple and lightweight architecture and design patterns such as this suits our aim and objectives with the project.
+
+\subsubsection{Firebase Instance}
+A firebase instance is used as a proxy to make API calls to Firebase over the internet. This component is responsible for security, data integrity and overall database management.
+
+\subsubsection{Toolbar}
+The toolbar component is responsible for creating and presenting toolbar items such as the login and logout items.
+
+\subsubsection{Menu}
+The menu mainly comprises the list of classes available to the user. The menu component is responsible for retrieval and displaying the correct list of classes pertaining to a specific user in our system.
+
+\subsubsection{MenuTab}
+In the header section of our system we display the year groups. Year groups are the age range of the pupil in the classes that the teacher teaches. These year groups are retrieved and display by the MenuTab component.

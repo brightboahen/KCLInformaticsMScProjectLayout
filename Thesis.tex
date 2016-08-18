@@ -1,5 +1,5 @@
 %&latexf
-\documentclass[isdraft]{kclthesis}  % notes see below
+\documentclass[isdraft, kclharvardbib]{kclthesis}  % notes see below
 									% [releaseproject] will check release,
 							 		% [notreleaseproject] will check not release.
 							 		% [isdraft] provides background water mark "DRAFT"
@@ -49,7 +49,7 @@
 
 \pagenumbering{roman}
 \setcounter{tocdepth}{4}
-%\tableofcontents (Remember to uncomment this and also remove this comment)
+\tableofcontents
 %\newpage (Remember to uncomment this and also remove this comment)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\include{structure/figures_tables} (Remember to uncomment this and also remove this comment)
@@ -75,7 +75,7 @@
 
 \include{contents/nomenclature}
 %%%%% References
-\bibliographystyle{ieeetr}
+%\bibliographystyle{ieeetr}
 %%%%% Use King's College Harvard V1 style
 % If you want to use a bibliography style that is quite close to 
 % the King's College Harvard V1 style (http://libguides.kcl.ac.uk/reference/KingsHarvardV1): 
@@ -83,7 +83,7 @@
 % 2. Provide "kclharvardbib" as a document class parameter in the beginning of this file.
 % 3. Uncomment the line "\bibliographystyle{kclharvardv1}" below.
 %%%%%
-%\bibliographystyle{kclharvardv1}
+\bibliographystyle{kclharvardv1}
 
 \bibliography{bibs/sample1, bibs/sample2} 
 %%%%% Declaration
