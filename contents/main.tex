@@ -1,3 +1,446 @@
 \section{Implementation}
+\subsubsection{Overview}
+In the previous chapter we talked about the design decisions and the elements or components that make up the system. We also looked at their definitions and the functionalities that they provide in our system. In this chapter we will be look at the implementation of our system based on the designs we talked about in the previous chapter. Our system relies extensively on the PolymerJS library to create the components that make up the system, all components but the \emph{Frontcontroller} are polymer objects.
+\subsection{PolymerJS Framework}
+PolymerJS \cite{website:PolymerJS} is a JavaScript library that provides a set of features to create custom\footnote{user defined} elements in the browser. These features are designed to make it easier and faster to create custom elements that work like standard DOM.\footnote{DOM stands for Document Object Model - An API for XML and HTML documents} The figure \ref{fig:PolymerArch} below illustrates how PolymerJS works from a high-level perspective. 
+
+\begin{figure}[!ht]
+\caption{High level structure of Polymer Framework}
+    \label{fig:PolymerArch}
+    \centering
+    \includegraphics[scale=0.5]{figures/PolymerJSArch}
+\end{figure}
+
+Polymer can be used in one of two ways or in both ways: 
+\begin{itemize}
+    \item web component consumer - Use the prebuilt custom elements of the library, 
+    \item web component creator - Extend or create your own custom elements.
+\end{itemize}
+
+For the purpose of our system we use polymer as creators in this project, as we extend and create our own components with specific features.
+
+\subsection{Implementing System Design}
+This sub section discusses how our system components were implemented to create our system.
+\subsubsection{Components}
+Custom elements or components are created by extending the Polymer instance with properties that represent our custom elements or components. Listing \ref{lst:Polymer} below illustrates how a web component is created using PolymerJS, as seen on \cite{website:PolymerJS} website.
+\begin{lstlisting}[caption={Creating a web component with PolymerJS}, label={lst:Polymer}]
+    <script>
+        // element registration
+        Polymer({
+          is: "element-name",
+          // add properties and methods on the element's prototype
+          properties: {
+            // declare properties for the element's public API
+            greeting: {
+              type: String,
+              value: "Hello!"
+            }
+          }
+        });
+      </script>
+\end{lstlisting}
+
+
+\subsection{Frontcontroller}
+The front controller handles requests and navigation through the web application(system) as the user performs tasks. It is the main point of entry and is also responsible for instantiating the main component of our system and the firebase \cite{website:Firebase} that handles user authentication and database connection.
+
+\begin{lstlisting}[caption={Initiating frontcontroller and creating an instance of Firebase}, label={lst:FirebaseConfig}]
+var FrontController = { app : {}};
+  (function(document){
+    var applicationModel  =   new appModel(),
+      uid               =   '',
+      _userData         =   new helperModel(),
+      _userModData      =     {},
+      _menuTogs         =     0,
+      _stateMachine     =   new StateMachine(),
+      _agentWorker      =   new Worker('../scripts/agentWorker.js'),
+      config            =   {
+        apiKey: "AIzaSyA-a54Uo8kGHKWaGO2z4dlvYUOs99vzpXY",
+        authDomain: "project-8859347959306061978.firebaseapp.com",
+        databaseURL: "https://project-8859347959306061978.firebaseio.com",
+        storageBucket: "project-8859347959306061978.appspot.com"
+      },
+      dbBackend         =   new FirebaseWrapper(config),
+      worker            =   new Worker('../scripts/modelWorker.js');
+    _initAppState();
+\end{lstlisting}
+
+%Explain what the code above is doing
+
+\begin{lstlisting}[caption={Initiating the application state from the front controller}, label={lst:InitAppState}]
+    //Initialise app state
+    function _initAppState(){
+      _objectAssignPoly();
+      dbBackend.auth().onAuthStateChanged(function(user){
+        if(user){
+          uid = user.uid;
+          _stateMachine.updateState('signed');
+          _stateMachine.updateState('auth');
+          if(checkURL() === 'class'){
+            _stateMachine.updateState('class');
+          }
+          //retrieve user model representation from database and pass it to worker for repackaging
+          //results returned is then merge with user profile data.
+          var myRepRef = dbBackend.database().ref('myRep/'+uid);
+          myRepRef.once('value', function(data){
+            var dataForWorker = Object.assign({},data.val());
+            console.log(data.val());
+            _agentWorker.postMessage(dataForWorker);
+          });
+        }else{
+          _stateMachine.updateState('intro');
+          uid = null;
+        }
+      });
+      function checkURL(){
+        return window.location.href.split('/')[4];
+      }
+    }
+\end{lstlisting}
+
+%Explain app state initialisation code above
+
+\begin{lstlisting}[caption={Frontcontroller app model}, label={lst:FrontControllerAppModel}]
+    FrontController.app = {
+      stateManager  :   _stateMachine,
+      appModel      :   applicationModel,
+      logKey        :   '',
+      _uid          :   uid,
+      _yearKey      :   '',
+      currentClassName : ''
+      }
+\end{lstlisting}
+
+%Explain the front controller app model above
+
+\begin{lstlisting}[caption={Routing by frontcontroller}, label={lst:routing}]
+    // Routes
+      page('*', scrollToTop, closeDrawer, function(ctx, next) {
+        next();
+      });
+
+      page('/', function() {
+        app.route = 'home';
+        app.params = '';
+        setFocus(app.route);
+      });
+
+      page(app.baseUrl, function() {
+        app.route = 'home';
+        app.params = '';
+        setFocus(app.route);
+      });
+
+      page('/class', function() {
+        app.route = 'class';
+        setFocus(app.route);
+      });
+
+      page('/class/:name', function(data) {
+        app.route = 'class';
+        app.params = data.params;
+        console.log('params', app.params);
+        setFocus(app.route);
+      });
+
+      // 404
+      page('*', function() {
+        app.$.toast.text = 'Can\'t find: ' + window.location.href  + '. Redirected you to Home Page';
+        app.$.toast.show();
+        page.redirect(app.baseUrl);
+      });
+
+      // add #! before urls
+      page({
+        hashbang: true
+      });
+\end{lstlisting}
+
+%Explain the routing code above
+
+\subsection{Main System Component}
+The main system component is a compound component that is as a result of various components nested together. It is instantiated by the frontcontroller, the system component in turn instantiate and present relevant components of the system.
+
+\begin{lstlisting}[caption={System Component Instantiated Declaratively}, label={lst:App}]
+   <template is="dom-bind" id="app">
+       <paper-toolbar id="mainToolbar" class="tall">
+          <my-menu-toggle menu-toggle-user-data="{{userData}}" hide-toggle="{{hideMenuToggle}}" menu-toggle-worker="{{worker}}" paper-drawer-toggle></my-menu-toggle>
+          <span class="space"></span>
+          <my-toolbar user-data="{{userData}}"  id="appToolbar"></my-toolbar>
+          <!-- Application name -->
+          <div class="middle middle-container">
+            <div class="app-name">Classroom Management Tool</div>
+          </div>
+          <!-- Application sub title -->
+          <div class="bottom bottom-container">
+            <my-menu-tabs menu-tab-data="{{userData}}" id="menuTabs"></my-menu-tabs>
+          </div>
+        </paper-toolbar>
+  </template>
+\end{lstlisting}
+
+%Explain the declaration above
+
+\subsection{Toolbar}
+\begin{lstlisting}[caption={}, label={lst:}]
+ (function(){
+      'use strict';
+      Polymer({
+        is  : 'my-toolbar',
+        properties :{
+          userData : {
+            type : Object,
+            value : function(){return {};},
+            observer : '_userDataChanged'
+          },
+          toolbarTools : {
+            type : Object,
+            value : {
+              "signUp" : ['add','face'],
+              "signIn" : ['face'],
+              "welcome" : ['account-circle','settings','exit-to-app']
+            }
+          },
+          toolbarList : {
+            type : Array,
+            value : function(){return [];}
+          }
+    })();
+\end{lstlisting}
+
+\subsection{Menu}
+\begin{lstlisting}[caption={}, label={lst:}]
+    (function(){
+      'use strict';
+      Polymer({
+        is  :   'my-menu',
+        properties : {
+          menuData : {
+            type : Object,
+            value : function(){return {};},
+            observer : '_menuDataChanged'
+          },
+          menuList : {
+            type : Array,
+            value : function(){return [];}
+          },
+          currentClassYear : {
+            type  : String,
+            value : '',
+            observer : '_currentClassYearChanged'
+          }
+        }
+      })
+    })();
+\end{lstlisting}
+
+\subsection{MenuTab}
+\begin{lstlisting}[caption={}, label={lst:}]
+        (function(){
+      'use strict';
+      Polymer({
+        is :'my-menu-tabs',
+        properties : {
+          tabsToRender : {
+            type : Array,
+            value : function(){return [];},
+            notify : true,
+            observer : '_tabsChanged'
+          },
+          currentTab : Number,
+          currentTabName : String,
+          tabCounter : Number,
+          menuTabData : {
+            type : Object,
+            value : function(){return {};},
+            observer : '_menuTabDataChanged'
+          }
+        }
+      });
+    })()
+\end{lstlisting}
+
+\subsection{Classroom}
+\begin{lstlisting}[caption={}, label={lst:}]
+    (function(){
+      'use strict';
+      Polymer({
+        is  : 'my-class-page',
+        properties : {
+          classParamKey : {
+            type : Object,
+            value : function(){return {};},
+            observer : '_classParamKeyChanged'
+          },
+          classObj : {
+            type : Object,
+            value : function(){return {};},
+            observer : '_classObjChanged'
+          },
+          pupilObj : {
+            type : Object,
+            value : function(){return {};},
+            observer : '_pupilObjChanged'
+          },
+          classKey : String,
+          classData : {
+            type : Object,
+            value : function(){return{};}
+          },
+          planStyle : {
+            type : Array,
+            value : function(){return [];}
+          },
+          /**
+           * Property bound to the managers in view property - to indicate whether the history manager is in view or not*/
+          classInView : {
+            type : Boolean,
+            value : false
+          },
+          /**
+           * Data passed to the history manager to initialise seating plan and history stack
+           * */
+          historyData : {
+            type : Object,
+            value : function(){return{};}
+          },
+          /**
+           * current seating arrangement
+           * */
+          currentSeating : {
+            type : Array,
+            value : function(){return[];},
+            observer : '_currentSeatingChanged'
+          },
+          /**
+           * Canvas handler
+           * */
+          canvasHandler : {
+            type : Array,
+            value : function(){return[];}
+          }
+        }
+     })
+\end{lstlisting}
+
+\subsection{History Manager}
+\begin{lstlisting}[caption={}, label={lst:}]
+    Polymer({
+        is          :  'my-history-manager',
+        properties  :   {
+          /**
+           * All possible seating plans that have been used in the class - Array list
+           * */
+          listStack : {
+            type  : Array,
+            value : function(){return [];},
+            observer : '_listStackChanged'
+          },
+          /**
+           * If true then the manager is visible
+           * */
+          inView : {
+            type : Boolean,
+            value : false,
+            observer : '_inViewChanged'
+          },
+          /**
+           * Data to initialise seating plan
+           * */
+          stackData : {
+            type : Object,
+            value : function(){return{};},
+            observer : '_stackDataChanged'
+          },
+          /**
+           * Seating arrangement returned by the plan model
+           * */
+          seatingPlan : {
+            type : Array,
+            value : function(){return[];},
+            notify : true
+          },
+          /**
+           * Current Class key
+           * */
+          currentClassKey : {
+            type : String,
+            value : ''
+          },
+          /**
+           * Property to hold reference to the canvas on which the seating plan is drawn
+           * */
+          canvasRef: {
+            type  : Array,
+            value : function(){return[];},
+            observer : '_canvasRefChanged'
+          },
+          /**
+           * Status notification to update plan
+           * */
+          planStatus :{
+            type : String,
+            value : '0'
+          }
+        }})
+\end{lstlisting}
+
+\subsection{User Model}
+\begin{lstlisting}[caption={}, label={lst:}]
+    _internalRep = {
+  actions: function () {
+    return {
+      _loadData : function(data){
+        if(data){
+          var dataObj = data.myModelRep || data;
+          if(dataObj.hasOwnProperty('ExperienceWithSystem') && dataObj.hasOwnProperty('sysUse')){
+            return true;
+          }
+        }
+      },
+      _adaptToUser : function(data){
+        if(_internalRep.states[1].state === true){
+          _internalRep.states[0].state = true;
+          var avExpTime = calculateAverageExperience(data);
+            return {
+              "my-floating-button": {
+                exp : avExpTime,
+                sys : data.myModelRep ? data.myModelRep.sysUse : data.sysUse
+              }
+          };
+        }
+      }
+    }
+  }(),
+  states: [
+    {
+      name: 'Adapted',
+      state: false
+    },
+    {
+      name: 'Loaded',
+      state: false
+    }
+  ],
+  goal: function () {
+    return this.states[0].state === true && this.states[0].state === true;
+  }
+};
+\end{lstlisting}
+
+\subsection{Recommendation Model}
+\begin{lstlisting}[caption={}, label={lst:}]
+     self.ruleToApply = rules[planModel.description[0].token];
+\end{lstlisting}
+
+\begin{lstlisting}[caption={}, label={lst:}]
+    
+\end{lstlisting}
+\begin{lstlisting}[caption={}, label={lst:}]
+    
+\end{lstlisting}
+
+\subsection{Summary}
+
 
 
