@@ -64,8 +64,35 @@ var FrontController = { app : {}};
       worker            =   new Worker('../scripts/modelWorker.js');
     _initAppState();
 \end{lstlisting}
+Listing \ref{lst:FirebaseConfig} above is a code snippet from the \emph{frontcontroller}. As the main and only point of entry into our system and to make sure all required data and models are ready for the other components to use. The frontcontroller creates a global object ``app'' as seen in line 1 of listing \ref{lst:FirebaseConfig} and then exposes necessary methods and data through the ``app'' object.
 
-%Explain what the code above is doing
+On line 16 we see a reference to ``FirebaseWrapper'' assigned to a variable ``dbBackend''. This variable is a reference to Firebase and exposes all the Firebase methods such as creating and updating database entries and user authentication. The listing below illustrates how the frontcontroller wraps one of the methods of firebase. It wraps a firebase method ``createUserWithEmailAndPassword'' in an identifier ``createNewUser'' to create a shorter method name for all other system components to use.
+
+\begin{lstlisting}[caption={creating a new user}, label={lst:CreateUSer}]
+    createNewUser : function(email, password, optUserDataFromForm, optFunction){
+        dbBackend.auth().createUserWithEmailAndPassword(email, password)
+          .then(function(user){
+            uid = user.uid;
+            if(optUserDataFromForm !== undefined){
+              dbBackend.database().ref('profile/'+uid).set({
+                name : optUserDataFromForm.name,
+                sex : optUserDataFromForm.sex,
+                subject : optUserDataFromForm.subject,
+                year : optUserDataFromForm.year,
+                createdAt : firebase.database.ServerValue.TIMESTAMP,
+                signedInAt : firebase.database.ServerValue.TIMESTAMP,
+                userAgent : window.navigator.userAgent
+              }).then(function(){
+                _retrieveUserData();
+                if(optFunction){optFunction();}
+              }).catch(function(err){
+                //console.log(err.message);
+              });
+            }
+          });
+      },
+\end{lstlisting}
+
 
 \begin{lstlisting}[caption={Initiating the application state from the front controller}, label={lst:InitAppState}]
     //Initialise app state
@@ -98,7 +125,8 @@ var FrontController = { app : {}};
     }
 \end{lstlisting}
 
-%Explain app state initialisation code above
+\textbf{Frontcontroller} also initialises the application state by checking if an authenticated user exists. If this check is passed then it will check the current URL\footnote{Uniform Resource Locator -: referencing the current page} to determine the task being performed by the user. The code fragment in listing \ref{lst:InitAppState} above gives an insight into the other steps the frontcontroller takes in initialising the application state.
+
 
 \begin{lstlisting}[caption={Frontcontroller app model}, label={lst:FrontControllerAppModel}]
     FrontController.app = {
@@ -110,8 +138,7 @@ var FrontController = { app : {}};
       currentClassName : ''
       }
 \end{lstlisting}
-
-%Explain the front controller app model above
+The app object is a mechanism that exposes system data and methods by giving it a global scope. These methods and data become accessible to all other system components.
 
 \begin{lstlisting}[caption={Routing by frontcontroller}, label={lst:routing}]
     // Routes
@@ -143,20 +170,13 @@ var FrontController = { app : {}};
         setFocus(app.route);
       });
 
-      // 404
-      page('*', function() {
-        app.$.toast.text = 'Can\'t find: ' + window.location.href  + '. Redirected you to Home Page';
-        app.$.toast.show();
-        page.redirect(app.baseUrl);
-      });
-
       // add #! before urls
       page({
         hashbang: true
       });
 \end{lstlisting}
 
-%Explain the routing code above
+One of the responsibilities of the frontcontroller is to providing navigation mechanism for the system. It routes requests to the relevant components as can be seen in listing \ref{lst:routing} line 6 through to line 23. The routing mechanism of the frontcontroller uses a PageJS \cite{website:VisionMedia} a client side router to map URL to components.  
 
 \subsection{Main System Component}
 The main system component is a compound component that is as a result of various components nested together. It is instantiated by the frontcontroller, the system component in turn instantiate and present relevant components of the system.
@@ -179,10 +199,15 @@ The main system component is a compound component that is as a result of various
   </template>
 \end{lstlisting}
 
-%Explain the declaration above
-
 \subsection{Toolbar}
-\begin{lstlisting}[caption={}, label={lst:}]
+Listing \ref{lst:toolbarl} below illustrates how the toolbar component is implemented in our system. The component has three main properties:
+\begin{itemize}
+    \item userData - An object that contains system wide information on the current user of the system,
+    \item toolbarTools - An object that contains an associative array (key-value pairs) of tool bar items to render for the current user,
+    \item toolbarList - An array to hold references to all toolbar items currently on display. 
+\end{itemize}
+
+\begin{lstlisting}[caption={toolbar instance}, label={lst:toolbar}]
  (function(){
       'use strict';
       Polymer({
@@ -207,6 +232,21 @@ The main system component is a compound component that is as a result of various
           }
     })();
 \end{lstlisting}
+The listing \ref{lst:toolbarConfig} below shows how the toolbar configures the tool bar items. It first checks the current state of the application and then using the application state as a key,  retrieves the value of the toolbarTools property that corresponds to it.
+If this value exists it is then pushed on to the toolbarList array.
+\begin{lstlisting}[caption={Configuring toolbar items}, label={lst:toolbarConfig}]
+_configureToolbarItems : function(){
+          var self = this,
+            appState = FrontController.app.stateManager.getCurrentState();
+          if(self.toolbarTools && self.toolbarList){
+            if(self.toolbarTools.hasOwnProperty(appState)){
+              self.toolbarList = self.toolbarTools[appState];
+            }
+          }
+
+        }
+\end{lstlisting}
+
 
 \subsection{Menu}
 \begin{lstlisting}[caption={}, label={lst:}]
