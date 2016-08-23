@@ -1,30 +1,35 @@
 \section{Introduction}
 \subsection{Introduction} 
-Phil Beadle \cite{website:TES} explains in his article why the seating plan is the single most important piece of behavioural modification equipment in a teachers toolbox. Phil lays more emphasis on how the way pupils sit in the classroom impacts their learning and their participation in the classroom. A survey of students asking them ``How do they learn best?'' made it clear that students learn best in groups, as they all replied they work better in groups.
+Collaboration in any given activity proves to bring out the best in the participants,A survey of students asking them ``How do they learn best?'' made it clear that students learn best in groups, as they all replied they work better in groups.\cite{website:TES} explains in his article why the seating plan is the single most important piece of behavioural modification equipment in a teachers toolbox. \cite{website:TES}lays more emphasis on how the way pupils sit in the classroom impacts their learning and their participation in the classroom. 
 \subsection{The Problem}
-Teachers have a wide range of tools and software applications to aide them with their daily tasks and most of these software suites come with a classroom seating feature but these tools are developed with a one size fits all ideology.There is research that lays out how best to group students in a classroom but since almost all the tools teachers have at their disposal are rigid with no flexibility they cannot experiment with these research findings to the better of their students.
+Teachers have a wide range of tools and software applications to aide them with their daily tasks and most of these software suites come with a classroom seating feature but these suite of tools look at the bigger picutre of ``school'' and ``student data management'', foregoing the need to emphasise on critical features like classroom collaboration and seating arrangements, in addition these tools are also developed with a one size fits all ideology.There is research that lays out how best to group students in a classroom but since almost all the tools teachers have at their disposal are rigid with no flexibility they cannot experiment with these research findings to the better of their students.
 
 Teachers are known to take matters in their hands by performing seating arrangements on a piece of paper or worse not bother with the extra work but go with the default structure to the detriment of the students.
 
 \subsection{The Solution}
-A better way to solve this and to encourage teachers to experiment with proven findings on how to get the best out of students in a classroom would be to develop a web application that helps them with seating arrangements and one with an \emph{Adaptive User Interface} and breaks away from the one size fits all ideology to a one size fits none ideology. Where the interface can make implicit inference on how the system is being used and how best to help the user complete their tasks.
+A better way to solve this and to encourage teachers to experiment with proven findings on how to get the best out of students in a classroom would be to develop a web application that helps them with pupil classroom collaboration, seating arrangements and one with an \emph{Adaptive User Interface} and breaks away from the one size fits all ideology to a one size fits none ideology. Where the interface can make implicit inference on how the system is being used and how best to help the user complete their tasks.
 
 \subsection{Main Concepts}
 The notion of Adaptive User Interfaces has been around for several years, gathering an enormous amount of interest in the research community. Over the years a lot of technological advancements have been made in addition to standards and techniques to achieve adaptiveness on the user facing or interface layer of software applications. Example [interbook@Aha]. \cite{brusilovsky2007user} 
 
 An adaptive user interface monitors the users activity trying to identify usage patterns and automatically adjust the interface components or content provided by the system to accommodate such user differences as well as changes in user skills, knowledge and preferences.\cite{alvarez2007current}
 
-This can be achieved through a number of approaches; namely Task models, User Models and Artificial Intelligence Techniques. This project utilises User Model Technique. 
+This can be achieved through a number of approaches; namely Task models, User Models and Artificial Intelligence Techniques. This project utilises User Model Technique.\ref{sub:UserModel} 
 
 User models are used to generate or adapt user interfaces at runtime, to address particular user needs and preferences. User models are also known as user profiles, personas or archetypes. The user preferences and needs are represented by variables \cite{W3C}.
-\subsection{Project Aims}
-This project aims to use the User Model approach to develop a web application with an \emph{Adaptive User Interface} that teachers can use to manage their classrooms in terms of seating pairing and arrangement of pupils. The underlying User Model of the application is based on research findings on how to best group students in a classroom:
+
+\subsection{Project Aims} \label{sub:projectAims}
+This project aims to use the User Model approach to develop a web application with an \emph{Adaptive User Interface} that teachers can use to manage their classrooms in terms of seating pairing(groups) and arrangement of pupils. The underlying User Model of the application is based on research findings on how to best group students in a classroom:
 
 \begin{itemize}
     \item Groups - A general rule that applies to the application domain (seating plan); students work better in groups.
     \item Boys and Girls together - A general rule of pairing boys and girls together ; boys work better when paired with girls with a slightly lower ability. \cite{OFSTED}
     \item Current Context - that is, the current highly rated seating pattern by the teacher. 
 \end{itemize}
+
+The rules above are the basis or default rule off which the system initialises. The user can override the rules as we will see in the next paragraphs.
+\subsubsection{User Monitory}
+Our system also monitors and or tracks the user's usage of the system by keeping track of frequently used features and time spent using a specific feature of the system or the whole system. The system operates on the basis of ``user-controlled self adaptation'', that is, the system implements changes once the user agrees.
 
 The figure below \ref{fig:User-Model} illustrates the overview of the system and what it does. Teachers import student data in a Comma Separated Values format this forms part of the teachers user data. If the teacher is a returning user then any previously used seating plan rated highly by the user forms part of his or her user data. if the user is new then this variable is populated with the default which obeys the first two of the rules mentioned in the previous paragraph.
 

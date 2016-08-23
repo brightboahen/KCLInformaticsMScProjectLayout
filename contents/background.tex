@@ -1,58 +1,38 @@
 \section{Design Requirements}
-\subsection{User Requirements}
+\subsection{User Requirements} \label{sub:userRequirments}
 \subsubsection{Introduction}
-The project aims to develop a classroom management tool that works based on the theories discussed in the literature review chapter and also draws \emph{Adaptive User Interface} techniques to improve the users interaction with the systems interface. The following are what the user should require from the system. The requirements are given ranks.\footnote{ Mandatory :- the feature must be built into the final system; Desirable :- the feature must be built into the final system if time permits; Possible Enhancement :- the feature could be included as a future work}
+The project aims to develop a classroom management tool that works based on the theories discussed in the literature review chapter and also draws \emph{Adaptive User Interface} techniques to improve the users interaction with the systems interface. The following are what the user should require from the system. The requirements are given ranks.\footnote{ Mandatory :- the feature must be built into the final system; Desirable :- the feature must be built into the final system if time permits; Possible Enhancement :- the feature could be included as a future work} Table \ref{tab:user-requirements} contains a list of user requirements.
 
-\subsubsection{Account Registration - Mandatory}
-The systems interface provides a registration mechanism for new users to create an account. This mechanism requires the user to choose a password and email account that when validated would be used by the user for subsequent access to the system.
 
-\subsubsection{Login - Mandatory}
-This component forms part of the registration mechanism and it accepts the email address and password the user used in the registration process to authenticate the user and allow access to the system. 
 
-\subsubsection{Logout - Mandatory}
-Users can log out of the system once they have been authenticated and are in the system. This provides them with a safe and secure way to leave the system and preserve the current state.
 
-\subsubsection{Add class groups - Mandatory}
-System interface will give users the feature to add new class groups to their workspace once they have been authenticated and granted access to the sytem. 
 
-\subsubsection{Create seating arrangements - Mandatory}
-The classroom component of the system's interface will provide a canvas for the user to create a seating plan in free form, \footnote{free form - denotes the canvas has no grid constraints and that the user can have any shape to the seating arrangements}. The classroom renders only thirty (30) cards, \footnote{cards represent pupils or students on the classroom space} as OFSTED \cite{OFSTED} states that is the optimal number of students any one teacher can effectively manage in a classroom.
 
-\subsubsection{Upload pupil data - Mandatory}
-The upload component can allow users to upload pupil data in a standard format,\footnote{Comma Separated Values (csv)} into the system.
-
-\subsubsection{Save seating plans - Mandatory}
-The history manager component of the user interface can save the current seating plan that the user is using at any point in time.
-
-\subsubsection{Retrieve seating plans - Mandatory}
-History manager component can also retrieve old seating plans or arrangements that relate to the user.
-
-\subsubsection{Update seating plans - Mandatory}   
-As well as saving and retrieving, the history manager component can update old seating arrangements with the current arrangements on the canvas(classroom space).
-
-\subsubsection{Scoring System - Mandatory}
-The history item component provides a scoring feature that allows the user to score or rate the plans and or seating arrangements that they use.
-
-\subsubsection{Delete year groups - Desirable}
-The menu tab component of the system interface can delete the current year group selected by the user.
-
-\subsubsection{Edit year group name - Desirable}
-The menu tab component can also edit the name of the currently selected year group by the user.
-
-\subsubsection{Delete class group - Desirable}
-The menu item component can delete the currently selected class. 
-
-\subsubsection{Edit class group name - Desirable}
-The menu item component can edit the name of the currently selected class.
-
-\subsubsection{Delete old seating arrangements - Desirable}
-The history manager can delete old seating arrangements that are of no relevance to the user.
-
-\subsubsection{Google Spreadsheet Integration - Possible Enhancement}
-The upload can upload pupil data from google spreadsheet application programming interface if the user has pupil data located on the google spreadsheet system.
-
-\subsubsection{Report Generation - Possible Enhancement}
-The information component can generate reports on best or optimal seating arrangements used by the user.
+\begin{table}[htbp]
+\begin{tabular}{|L|c|L|}\hline
+Requirement & Rank & Description \\\hline
+Account Registration & Mandatory &  \multicolumn{1}{m{8cm}|}{The systems interface provides a registration mechanism for new users to create an account. This mechanism requires the user to choose a password and email account that when validated would be used by the user for subsequent access to the system.}\\\hline
+  Login & Mandatory & \multicolumn{1}{m{8cm}|}{This component forms part of the registration mechanism and it accepts the email address and password the user used in the registration process to authenticate the user and allow access to the system. } \\\hline
+  Logout & Mandatory & \multicolumn{1}{m{8cm}|}{Users can log out of the system once they have been authenticated and are in the system. This provides them with a safe and secure way to leave the system and preserve the current state.} \\\hline
+  Add class groups & Mandatory & \multicolumn{1}{m{8cm}|}{System interface will give users the feature to add new class groups to their workspace once they have been authenticated and granted access to the sytem. } \\\hline
+Create seating arrangements & Mandatory & \multicolumn{1}{m{8cm}|}{The classroom component of the system's interface will provide a canvas for the user to create a seating plan in free form, \footnote{free form - denotes the canvas has no grid constraints and that the user can have any shape to the seating arrangements}. The classroom renders only thirty (30) cards, \footnote{cards represent pupils or students on the classroom space} as OFSTED \cite{OFSTED} states that is the optimal number of students any one teacher can effectively manage in a classroom.} \\\hline
+ Upload pupil data & Mandatory & \multicolumn{1}{m{8cm}|}{The upload component can allow users to upload pupil data in a standard format,\footnote{Comma Separated Values (csv)} into the system.} \\\hline
+  Save seating plans & Mandatory & \multicolumn{1}{m{8cm}|}{The history manager component of the user interface can save the current seating plan that the user is using at any point in time.} \\\hline
+  Retrieve seating plans & Mandatory & \multicolumn{1}{m{8cm}|}{History manager component can also retrieve old seating plans or arrangements that relate to the user.} \\\hline
+  Update seating plans & Mandatory & \multicolumn{1}{m{8cm}|}{As well as saving and retrieving, the history manager component can update old seating arrangements with the current arrangements on the canvas(classroom space).} \\\hline
+  Scoring System & Mandatory & \multicolumn{1}{m{8cm}|}{The history item component provides a scoring feature that allows the user to score or rate the plans and or seating arrangements that they use.} \\\hline
+  Delete year groups & Desirable & \multicolumn{1}{m{8cm}|}{The menu tab component of the system interface can delete the current year group selected by the user.} \\\hline
+  Edit year group name & Desirable & \multicolumn{1}{m{8cm}|}{The menu tab component can also edit the name of the currently selected year group by the user.} \\\hline
+  Delete class group & Desirable & \multicolumn{1}{m{8cm}|}{The menu item component can delete the currently selected class. } \\\hline
+  Edit class group name & Desirable & \multicolumn{1}{m{8cm}|}{The menu item component can edit the name of the currently selected class.} \\\hline
+  Delete old seating arrangements  & Desirable & \multicolumn{1}{m{8cm}|}{The history manager can delete old seating arrangements that are of no relevance to the user.} \\\hline
+  Google Spreadsheet Integration & Possible Enhancement & \multicolumn{1}{m{8cm}|}{The upload can upload pupil data from google spreadsheet application programming interface if the user has pupil data located on the google spreadsheet system.
+} \\\hline
+  Report Generation & Possible Enhancement & \multicolumn{1}{m{8cm}|}{The information component can generate reports on best or optimal seating arrangements used by the user.} \\\hline
+  one & two & \multicolumn{1}{m{8cm}|}{} \\\hline
+\end{tabular}
+\caption{\label{tab:user-requirements}User requirements table}
+\end{table}
 
 \subsection{Functional Requirements}
 The system interface must provide components that allows the following functionalities.
@@ -90,6 +70,9 @@ The system must provide users the ability to CRUD\footnote{Create, Update, Delet
 \subsubsection{Overview}
 The previous section laid more emphasis on what our system should do in order to achieve its aims and objectives, we briefly explained each functionality and the rationale behind it. In this section we will highlight the overall properties of the system, by specifying the standards that can be used to form an opinion of the overall operation of the system. The project is mainly concerned with the user interface features and functionality and as a result uses Firebase\cite{website:Firebase}, a platform that provides infrastructure and backend as a service. The use of Firebase makes it possible to provide requirements such as security and data integrity out of the box, allowing the project to focus on its main purpose and that is to create an adaptive user interface for a classroom management tool.
 
+\subsubsection{Adaptivity}
+The system shall provide adaptivity by restructuring its interface to reflect the most relevant features to the user. 
+
 \subsubsection{Security}
 The system shall be secure by only giving direct access to the system and its features to authenticated users. The authentication is provided by a trusted third-party solution, Firebase \cite{website:Firebase}. The encryption and security features provided by Firebase shall make the account registration, log in and logout operations of the system meet the security requirement.
 
@@ -123,7 +106,7 @@ Controllability, predictability and transparency are some of the important influ
 
 The user of our system mainly interacts with the UI(User Interface) performing all relevant actions and steps, the UI contains the classroom area but the component responsible for the functionality operates in isolation much like all the other components in that it gathers information from the user that the general UI component does not have access to. Example the seating arrangement currently on the canvas(seating floor). A \emph{User Model} is created out of the information gathered by these components.
 
-\subsection{User Model}
+\subsection{User Model} \label{sub:UserModel}
 The principal purpose of adaptation is to offer a simple, powerful and efficient interface to the user. We will be developing a system that offers such an interface by using the \emph{User Model} approach. By definition a \emph{User Model} is a representation of the knowledge and preferences of the user, these representations are depicted in the form of variables in the system. At the lower-level the user model is indeed an algorithm that creates an object with rules, the rules are then interpreted at the UI level to a user profile.
 
 \subsection{User Interface}
@@ -155,10 +138,10 @@ The system is designed to adapt its rules, that is, what it perceives to be the 
 \subsection{Classroom Canvas} \label{sub:classroom}
 The classroom canvas is used to create and update seating plans. This is where the rendering of pupils and their seating positions is performed, the classroom component has an instance of the \emph{recommendation object}. The seating patterns are recorded and stored by the \emph{history manager} component responsible for storing, retrieving and updating seating plans. The recommendation is initiated when the user starts to manipulate pupil seating positions on the canvas. A green outline on the pupil card suggests the pupil is paired or put in the best position as suggested by the rules currently being applied. A red outline suggests the position or pairing is not optimal. The user can of course ignore this - the plan they save as a result can be considered as an optimal plan or arrangement if they score it above 4 points. Each seating arranged store by the manager is given a score out of 5. The scoring is at the discretion of the user.
 
-\subsection{Recommendation Model}
+\subsection{Recommendation Model} \label{sub:RM}
 The recommendation model is an algorithm that recommends optimal seating arrangements based on the user model (specifically the highest rated seating arrangements), by analysing the user model and proposing an adaptation rule that reflects the seating arrangement preferences of the user. 
 
-\subsection{Web Workers}
+\subsection{Web Workers} \label{sub:webworkers}
 The core components of our system are the User and Recommendation Models; these have been designed to work in the background thread as web workers so as to not slow down the rendering of the user interface whiles these models perform computations. ``Web Workers are a mechanism by which a script operation can be made to run in a background thread separate from the main execution thread of a web application. The advantage of this is that laborious processing can be performed in a separate thread, allowing the main (usually the UI) thread to run without being blocked/slowed down''.\cite{website:Mozilla-WebWorkers}
 \section{System Architecture}
 \subsubsection{Overview}
@@ -189,7 +172,7 @@ In the header section of our system we display the year groups. Year groups are 
 
 \subsubsection{Classroom}
 The classroom component comprises a canvas on which seating arrangements are rendered as described in \ref{sub:classroom}. 
-\subsubsection{History Manager}
+\subsubsection{History Manager} \label{sub:historyManager}
 This component as the name implies holds references to all seating arrangements saved by the user in the system, each reference is an instance of another component called ``historyItem''. 
 
 \subsection{Component Architecture}

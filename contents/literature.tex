@@ -7,7 +7,7 @@ The classroom seating arrangement is under the control of the teacher unlike oth
 We are seeing that it is not only imperative that pupils are placed in the right place in the classroom but a vital decision that must be made by the teacher using their better judgement and theories as found by Wannarka and Ruhl \cite{wannarka2008seating} by arranging seats to suit the nature of task.
 
 \subsection{Student Behaviour on-task}
-On-task behaviour is a term used to describe the behaviour of a pupil or student during the performance of a specific task, example students being asked questions and an answer expected of them. Off-task describes when for a example a move away from their table without permission. These definitions have been used in a number of research to find out how best to get the best arrange seating in a classroom so as to improve on-task and decrease off-task behaviours. Studies that have focused on on-task (individual tasks) concluded that seating in rows work best. Marks, Fuhrer and Hartig \cite{marx1999effects} in their studies of a question-asking task of 10 year olds found that they pupils asked their teacher more questions when they were sat in a semi-circle than they did when they were sat in rows.
+On-task behaviour is a term used to describe the behaviour of a pupil or student during the performance of a specific task, example students being asked questions and an answer expected of them. Off-task describes when for a example a student\footnote{student and pupil are interchangeable throughout the paper} moves away from their table without permission. These definitions have been used in a number of research to find out how best to get the best arrange seating in a classroom so as to improve on-task and decrease off-task behaviours. Studies that have focused on on-task (individual tasks) concluded that seating in rows work best. Marks, Fuhrer and Hartig \cite{marx1999effects} in their studies of a question-asking task of 10 year olds found that they pupils asked their teacher more questions when they were sat in a semi-circle than they did when they were sat in rows.
 
 \subsection{Whole Class Teaching}
 There are evidence to support claims that whole class teaching provides order, control, purpose and concentration in classrooms.``Whole class teaching is associated with higher order questioning, explanations and statements and these in turn correlate with higher levels of pupil performance''\cite{alexander1992curriculum}
@@ -39,9 +39,12 @@ In the previous sub sections we looked at some existing systems that aim to enco
 
 The student response devices provided by \ref{sub:promethean} is one of the revolutionary tools to be introduced in a classroom, but although it encourages student participation in the classroom, it can also discourage pupil to pupil interaction during lessons. Example pupils with an introvert personality can take part in class without feeling exposed, but this would not improve on the pupils social development as founded by \cite{alexander1992curriculum}.
 
-These systems in isolation have their weaknesses and strengths as pointed out but there is a recurrent theme, a constant in all the system and that is they are not designed to adapt to the user, this is mainly due to the costs involved in developing a general purpose system to suit different personalities and stereotypes.
+These systems in isolation have their weaknesses and strengths as pointed out but there is a recurrent theme, a constant in all the system and that is they are not designed to adapt to the user needs and preferences, this is mainly due to the costs involved in developing a general purpose system to suit different personalities and stereotypes.
+
+Our system identifies these shortcomings and tries to solve this by implementing a system that draws on adaptive user interface techniques.
 
 \subsection{A brief history of user interfaces} \label{sub:history}
+
 The concept of \emph{user interfaces} surfaced in the 1960's, when in 1963 Ivan Sutherland published his MIT PhD thesis about a system called \textbf{Sketchpad} \cite{sutherland1964sketch}.
 
 The result of Ivan Sutherland's Sketchpad was a pioneering graphical user interface (GUI). Sketchpad allowed the user to create graphic images directly on the computer screen using a lightpen \cite{patrick2003intelligent}.
@@ -53,6 +56,15 @@ This led to the emergence of Intelligent User Interfaces(IUI) as a subfield of s
 In its salient form, an adaptive user interface or system monitors the users interaction with the system or interface and then tries to identify a pattern in the system's usage attributed to user difference s in order to automatically adjust the interface components or content to allow for such user differences as awell as changes in user skills, knowledge and preferences.
 
 We see examples of such mechanisms in our daily usage of our smart phones, laptops and or on our favourite social media platforms. Facebook's advertising feature shows products unique to users based on what their adaptive system has identified as a pattern associated to the user.On our smartphones, features like the predictive text is a form of adaptiveness. It learns and tries to improve a users texting or typing experience.
+
+\subsubsection{Adaptive User Interface Techniques}
+The following are some of the adaptive user interface techniques:
+\begin{itemize}
+    \item Task Models - Task models describe how to perform tasks to reach a user's goals \cite{website:Task-Models}. It is an important aspect of Human-Computer Interaction as it represents the logical activities that support users in reaching their goal when performin tasks in a given system.
+    \item Artificial Intelligence - These rule-based techniques whereby an agent has a goal to achieve, example the agents goal is to bring about the best combination of steps to performing a task that can improve the total number of steps a user takes to perform a task.
+    \item User Model - This project uses this technique, we will discuss \emph{User Model} in detail in \ref{sub:UserModel}.
+\end{itemize}
+
 
 \subsubsection{Why Adaptive User Interfaces?}
 Pioneering computer softwares were designed and developed to solve business and scientific problems in predetermined way that allowed only very constrained user input, through arguments provided to the program at runtime.\cite{langley1997machine}.
@@ -75,10 +87,6 @@ In this project we will explore the landscape of the techniques used currently t
 \subsubsection{Applications using Adaptive Concepts}
 Adaptive System Concepts has been extensively reviewed by various researchers, Benyon and Murray\cite{benyon1993applying}, Norcio and Stanley\cite{norcio1989adaptive} have all provided useful reviews. One of the issues with areas such as Adaptive Systems is that identical concepts have come out of different disciplines. These disciplines adopt their own terminology which makes the comparison and generalisation problematic. The list of systems provided below depict some of the various systems that can be described as ``intelligent''.
 \subsubsection{Intelligent User Interfaces}
-As mentioned earlier, IUI is a subfield of Human-Computer Interaction; Adaptive User Interfaces(AUI) is a subtype of IUI. 
-\subsection{Applications using Adaptive Concepts}
-Adaptive System Concepts has been extensively reviewed by various researchers, Benyon and Murray\cite{benyon1993applying}, Norcio and Stanley\cite{norcio1989adaptive} have all provided useful reviews. One of the issues with areas such as Adaptive Systems is that identical concepts have come out of different disciplines. These disciplines adopt their own terminology which makes the comparison and generalisation problematic. The list of systems provided below depict some of the various systems that can be described as ``intelligent''.
-\subsubsection{Intelligent User Interfaces}
 As mentioned earlier, IUI is a subfield of Human-Computer Interaction; Adaptive User Interfaces(AUI) is a subtype of IUI.A ``normal'' interface simply defines a channel of communication between a human user and a machine, whereas an ``intelligent'' one adapts to the user, communicates with the user and solves problems for the user.
 However, not all intelligent interfaces have the ability to learn and solve problems. Many interfaces we call intelligent focuses on the communication channels between the user and machine \cite{patrick2003intelligent}.
 \subsubsection{Natural Language Systems}
@@ -88,11 +96,5 @@ ITS systems of the notion that given a student(s) and topic(s) a computer system
 \subsection{Adaptivity at a cost}
 Complete AUI are hard to come by, this can be attributed to the fact that, the unpredictability and autonomy required for a complete AUI reduces a systems usability another contributing factor is that users suffer difficulty in forming ade- quate mental models of such systems. There has been proposals on creating support systems to aide users form adequate mental models \cite{paymans2004usability}. A ``normal'' interface simply defines a channel of communication between a human user and a machine, whereas an ``intelligent'' one adapts to the user, communicates with the user and solves problems for the user.
 However, not all intelligent interfaces have the ability to learn and solve problems. Many interfaces we call intelligent focuses on the communication channels between the user and machine \cite{patrick2003intelligent}.
-\subsubsection{Natural Language Systems}
-Natural Language systems as the name implies, try to adapt to the user by generating text appropriate to the specific query and characteristics of individual users, much like Apple Inc's Siri \cite{website:SIRI}. These systems approach this problem by inferring the user's needs and focus of attention from the use of natural language \cite{benyon1993adaptive}
-\subsubsection{Intelligent Tutoring Systems}
-ITS systems of the notion that given a student(s) and topic(s) a computer system can alleviate the variance of human-based teaching skills and can determine the best manner in which to present individually targeted instruction in a constrained subject domain \cite{benyon1993adaptive}. ITS are analogous to AES ( Adaptive Educational Systems); AES monitor the important learner characteristics and makes the appropriate adjustments to support and enhance learning experience for the learner \cite{shute2012adaptive}.
-\subsubsection{Adaptivity at a cost}
-Complete AUI are hard to come by, this can be attributed to the fact that, the unpredictability and autonomy required for a complete AUI reduces a systems usability another contributing factor is that users suffer difficulty in forming ade- quate mental models of such systems. there has been proposals on creating support systems to aide users form adequate mental models \cite{paymans2004usability}.
 \subsection{Summary}
 In this chapter we have seen the theories behind classroom seating arrangements and the importance of teachers actively performing this activity. We have discussed some systems that exist today and aims to make this activity seamless for teachers. The chapter also goes on to discuss the shortcomings of these systems and how a system with an Adaptive User Interface could provide a solution to the problems that the existing systems have by talking about a brief history of User Interfaces, the need for an \emph{Adaptive User Interface} and the challenges faced by adaptive systems.
