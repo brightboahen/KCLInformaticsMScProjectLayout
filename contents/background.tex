@@ -1,15 +1,9 @@
-\section{Design Requirements}
+\section{Design Requirements} \label{sec:designRequirements}
 \subsection{User Requirements} \label{sub:userRequirments}
 \subsubsection{Introduction}
 The project aims to develop a classroom management tool that works based on the theories discussed in the literature review chapter and also draws \emph{Adaptive User Interface} techniques to improve the users interaction with the systems interface. The following are what the user should require from the system. The requirements are given ranks.\footnote{ Mandatory :- the feature must be built into the final system; Desirable :- the feature must be built into the final system if time permits; Possible Enhancement :- the feature could be included as a future work} Table \ref{tab:user-requirements} contains a list of user requirements.
-
-
-
-
-
-
-\begin{table}[htbp]
-\begin{tabular}{|L|c|L|}\hline
+\begin{longtable}{|L|c|L|}\hline
+%\begin{tabular}{|L|c|L|}\hline
 Requirement & Rank & Description \\\hline
 Account Registration & Mandatory &  \multicolumn{1}{m{8cm}|}{The systems interface provides a registration mechanism for new users to create an account. This mechanism requires the user to choose a password and email account that when validated would be used by the user for subsequent access to the system.}\\\hline
   Login & Mandatory & \multicolumn{1}{m{8cm}|}{This component forms part of the registration mechanism and it accepts the email address and password the user used in the registration process to authenticate the user and allow access to the system. } \\\hline
@@ -30,41 +24,24 @@ Create seating arrangements & Mandatory & \multicolumn{1}{m{8cm}|}{The classroom
 } \\\hline
   Report Generation & Possible Enhancement & \multicolumn{1}{m{8cm}|}{The information component can generate reports on best or optimal seating arrangements used by the user.} \\\hline
   one & two & \multicolumn{1}{m{8cm}|}{} \\\hline
-\end{tabular}
+%\end{tabular}
 \caption{\label{tab:user-requirements}User requirements table}
-\end{table}
-
+\end{longtable}
 \subsection{Functional Requirements}
 The system interface must provide components that allows the following functionalities.
-\subsubsection{Authentication}
-The user interface of the system must authenticate the user on registration and on logging in.
-
-\textbf{Rationale} - This provides security and restricts access to system data and also allows the system to tailor its features and functionalities to the user based on their unique session ids.
-
-\subsubsection{Account Creation}
-The system must allow new users to the system to create their own accounts.
-
-\textbf{Rationale} - This is the only mechanism through which potential users can obtain access to the system.
-
-\subsubsection{Log in to user account}
-The system must provide users the ability to sign into their account, if they are returning users.
-
-\textbf{Rationale} - Users need to be able to return to use the system.
-
-\subsubsection{Log out of user account}
-The system must provide users with the ability to log out of the system.
-
-\textbf{Rationale} - This allows the system to safely save the users state and protect the users data by protecting against unauthenticated access.
-
-\subsubsection{New class groups}
-The system must allow both new and old users to add new class groups to their workspace.
-
-\textbf{Rationale} - Users are more likely to teach more than one class.
-
-\subsubsection{CRUD Seating Arrangements}
-The system must provide users the ability to CRUD\footnote{Create, Update, Delete} seating arrangements or plans on the user interface.This feature must be adaptive in that, it should alter seating rules to suit the preferences of the user.
-
-\textbf{Rationale} - This is the core functionality of the system, the system would not be a classroom management tool if it lacked the ability to perform seating arrangements.
+\begin{longtable}{|L|c|L|}\hline
+%\begin{tabular}{|L|c|L|}\hline
+Requirement & Description & Rationale \\\hline
+Authentication &\multicolumn{1}{m{4cm}|}{The user interface of the system must authenticate the user on registration and on logging in.} &  \multicolumn{1}{m{7cm}|}{This provides security and restricts access to system data and also allows the system to tailor its features and functionalities to the user based on their unique session ids.
+}\\\hline
+Account Creation & \multicolumn{1}{m{4cm}|}{The system must allow new users to the system to create their own accounts.} &  \multicolumn{1}{m{7cm}|}{This is the only mechanism through which potential users can obtain access to the system.}\\\hline
+Log in to user account & \multicolumn{1}{m{4cm}|}{The system must provide users the ability to sign into their account, if they are returning users.} &  \multicolumn{1}{m{7cm}|}{Users need to be able to return to use the system.}\\\hline
+Log out of user account & \multicolumn{1}{m{4cm}|}{The system must provide users with the ability to log out of the system} &  \multicolumn{1}{m{7cm}|}{This allows the system to safely save the users state and protect the users data by protecting against unauthenticated access.}\\\hline
+New class groups & \multicolumn{1}{m{4cm}|}{The system must allow both new and old users to add new class groups to their workspace.} &  \multicolumn{1}{m{7cm}|}{Users are more likely to teach more than one class.}\\\hline
+CRUD Seating Arrangements & \multicolumn{1}{m{4cm}|}{The system must provide users the ability to CRUD\footnote{Create, Update, Delete} seating arrangements or plans on the user interface.This feature must be adaptive in that, it should alter seating rules to suit the preferences of the user.} &  \multicolumn{1}{m{7cm}|}{This is the core functionality of the system, the system would not be a classroom management tool if it lacked the ability to perform seating arrangements.}\\\hline
+%\end{tabular}
+\caption{\label{tab:functional-requirements}Table of functional requirements}
+\end{longtable}
 
 \subsection{Non-Functional Requirements}
 \subsubsection{Overview}
@@ -158,7 +135,7 @@ Figure \ref{fig:SystemArchitecture} below shows the main components that make up
 \subsubsection{Front controller}
 The front controller provides our system with a single point of entry to handle requests and provides navigation from one component view to the other as the user performs tasks in our system. Our system is concerned with the User Interface therefore a simple and lightweight architecture and design patterns such as this suits our aim and objectives with the project.
 
-\subsubsection{Firebase Instance}
+\subsubsection{Firebase Instance} \label{sub:firebase}
 A firebase instance is used as a proxy to make API calls to Firebase over the internet. This component is responsible for security, data integrity and overall database management.
 
 \subsubsection{Toolbar}
@@ -177,5 +154,17 @@ This component as the name implies holds references to all seating arrangements 
 
 \subsection{Component Architecture}
 In the overview sub section of this section we mentioned \emph{Plug and play architectural} style, each functionality in our system is provided by a component that operates in isolation. This makes it possible for us to remove a component and replace it with another. \cite{clemens1998component} defines a component as a unit of composition with contractually specified interfaces and explicit context dependencies, a software component can be deployed independently and is subject to third part composition.
-\subsubsection{Web components}
+\subsubsection{Web components} \label{sub:webComponents}
 Our components are developed based on the \emph{Web Components}\footnote{ Web component in our system is based on PolymerJS framework} standards. \cite{website:Mozilla-Developer}. A web component is a reusable interface widget that is created with open web technologies. \footnote{Open web technologies like standard HTML elements} 
+
+\subsection{Alternative Design and Architecture}
+In this section we discuss the alternatives to the design and architecture concepts, presented in this chapter.
+
+\subsubsection{ReactJS}
+\cite{website:ReactJS}'s ReactJS a JavaScript library for building \emph{user interfaces} is an alternative to web components \ref{sub:webComponents}. ReactJS allows for the creation of resusable components but ReactJS relies on the library to perform any rendering in the web browser. Web components are a standard specification; most web browsers have the capability to render web components.
+
+\subsubsection{Layered Architecture}
+A layered architecture is an alternative to the component (plug and play) architecture used in our system. A layered architecture utilises layers to assign the functionalities in a software system. This creates a hierarchical structure which is not necessary for our system and its objectives. We needed a flat structure with decoupled responsibilities; a component architecture fits this purpose.
+
+\subsubsection{NodeJS with MongoDB}
+\cite{website:NodeJS} is an event driven JavaScript runtime framework, that allows JavaScript a client-side only scripting language to run on the server-side; servers can be instantiated with NodeJs.\cite{website:MongoDB}is a NoSQL(Non SQL, None-Relational) database framework, that provides a mechanism for storing data in JSON(JavaScript Object Notation) format. NodeJS and MongoDB forms a stack of technologies; direct alternative to firebase \ref{sub:firebase}, but the former requires set and maintenance procedures that would have taken a high percentage of development time. Firebase allowed us to focus on the issue our system aims to solve.

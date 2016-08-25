@@ -107,5 +107,84 @@ We based based the user tests in  \ref{sub:user-testing} on two main concepts.
 This is because we can use these two as a metric to judge the system whether it meets all the user requirements mentioned in \ref{sub:userRequirments} . Clarity involves all the steps of the use while performing their tasks in the system and cognitive skills involves how hard they have had to think about their tasks. A high cognitive value would indicate the system is not achieving its adaptivity requirement and if they steps are not clear enough the user cannot perform their tasks. The system fails its overall aim.
 
 The result from the tests in \ref{tab:user-testing1} and \ref{tab:user-testing2} cannot be conclusive as we were only able to get one serious user to undertake the test. It may not be conclusive but it gave us an indication of the potential of the system in achieving its goals. We also could not conduct real time test by asking teachers to use the system for a class and report on how well the seatings recommended by the system performed.
+
+\subsection{Evaluation}
+This section assesses the results of our system against the mandatory requirements we presented in chapter \ref{sec:designRequirements} of this paper. In table \ref{tab:requirements-evaluation} we look at the status of each requirement.
+\subsubsection{Requirements}
+\begin{longtable}{|L|c|L|}\hline
+Requirement & Status & Comment \\\hline
+Account Registration & Complete &  \multicolumn{1}{m{7cm}|}{The user can create or register an account with our system, by selecting the create account button on the user interface.}\\\hline
+Login & Complete  &  \multicolumn{1}{m{7cm}|}{ Our system provides a registered user the functionality to access system features}\\\hline
+Logout & Complete  &  \multicolumn{1}{m{7cm}|}{ Our system provides the user with logout functionality to safely leave the system}\\\hline
+Add class groups & Complete  &  \multicolumn{1}{m{7cm}|}{The user is able add a new class group to his or her workspace}\\\hline 
+Create seating arrangements & Complete  &  \multicolumn{1}{m{7cm}|}{The user is able create seating arrangements by dragging and dropping models of students on the classroom canvas.}\\\hline
+Upload pupil data & Complete  &  \multicolumn{1}{m{7cm}|}{The user is able to upload data in CSV format.}\\\hline
+Save seating plans & Complete &  \multicolumn{1}{m{7cm}|}{The user is able to save new seating plans through the history manager}\\\hline
+Retrieve seating plans & Complete &  \multicolumn{1}{m{7cm}|}{The user is able to retrieve old seating arrangements through the history manager }\\\hline
+Update seating plans & Complete &  \multicolumn{1}{m{7cm}|}{The user is able to update existing seating arrangements through the history manager}\\\hline
+Scoring System & Complete &  \multicolumn{1}{m{7cm}|}{The user is able to evaluate a seating arrangement or plan through the history item score mechanism}\\\hline
+Seating Recommendation & Complete  &  \multicolumn{1}{m{7cm}|}{Our system is able to recommend to the user, based on the rules implicitly inferred from saved seating arrangements with highest score}\\\hline
+User Monitoring & Complete &  \multicolumn{1}{m{7cm}|}{The system is able to track the user's system usage by recording times the log in and out of the system, the features they frequently use or spend most time. }\\\hline
+\caption{\label{tab:requirements-evaluation}Table of requirements and their evaluation}
+\end{longtable}
+\subsubsection{Design}
+Our system has been designed to be transparent and an enjoyable experience for the user. Our evaluation of the system with regards to transparency and enjoyable experience as a result of user testing \ref{sub:user-testing} is inconclusive. The only user used in testing gave a general feedback that showed our system met its transparency and enjoyable design but that is the view of one user.
+\subsubsection{Similar Systems}
+In the literature review chapter of this paper we discussed existing systems. In this sub section we will evaluate our system's result against some of these systems.
+
+Our system is able to recommend optimal seating arrangements, pairings using rules that have not been used in any of the existing systems. The system is also able to monitor the users activities, a feature missing in the other system due to their rigid nature. This is supported by the JSON(JavaScript Object Notation) extracted from the system's database in listing \ref{lst:modelRep}.
+\begin{lstlisting}[caption={User Tracking Model Representation}, label={lst:modelRep}]
+      "myRep" : {
+    "CE33hObsZDU4E6dyL3KLcauCK7a2" : {
+      "myModelRep" : {
+        "ExperienceWithSystem" : {
+          "addClass" : {
+            "avTime" : 6,
+            "initialTime" : 7
+          },
+          "csvUpload" : {
+            "avTime" : 4,
+            "initialTime" : 5
+          },
+          "logIn" : {
+            "timeTaken" : 30
+          },
+          "profile" : {
+            "timeTaken" : 8
+          },
+          "reg" : {
+            "timeTaken" : 27
+          },
+          "settings" : {
+            "avTime" : 3,
+            "initialTime" : 2
+          }
+        },
+        "adapt" : {
+          "my-floating-button" : {
+            "exp" : 13,
+            "sys" : {
+              "seconds" : 0
+            }
+          }
+        },
+        "personal" : {
+          "name" : "Lauren Main",
+          "sex" : "female",
+          "subject" : "Drama"
+        },
+        "preferences" : {
+          "my-menu-toggle" : {
+            "count" : 10
+          }
+        },
+        "sysUse" : {
+          "seconds" : 45
+        }
+      }
+    }
+\end{lstlisting}
+
+
 \subsection{Summary}
 In this chapter we have presented evidence of how well our system achieves its aims and objectives. We have seen how the individual components performed and how the overall system meets the requirement of a user.

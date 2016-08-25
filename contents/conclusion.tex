@@ -32,6 +32,16 @@ The \emph{User Model} algorithms used in this project is among the contributions
  
 \subsection{Further Work}
 This sections presents future work that can be done to improve on this project.
+\subsubsection{Desirable User Requirements}
+In chapter \ref{sec:designRequirements} we presented the requirements of the project. Some of these requirements were marked as desirable or of low priority, these requirements were not met. The addition of these requirements could improve the overall user experience. The requirements are as listed below:
+\begin{itemize}
+    \item Delete year groups - The ability to delete a year group from menu tab
+    \item Edit year group - The ability to edit a year group name after adding it to the system.
+    \item Edit class group name - The ability to edit a class' name after adding it to the system.
+\end{itemize}
+
+The structure is in place to enable these functionalities, a pop-up modal similar to the modals used to rate the seating plans could be bound to the class and year group elements' click event. This modal would then submit its content or the action selected to firebase.
+
 \subsubsection{Google Spreadsheet Integration}
 The primary way of the user to add pupil data to the system is to upload CSV files they already have in their local system. This could be improved by integrating one of Google's API for spreadsheet to provide an automated process of upload data into the system we developed in this project.
 \subsubsection{Report Generation}
