@@ -1,6 +1,6 @@
 \section{Implementation}
 \subsubsection{Overview}
-In the previous chapter we talked about the design decisions and the elements or components that make up the system. We also looked at their definitions and the functionalities that they provide in our system. In this chapter we will be look at the implementation of our system based on the designs we talked about in the previous chapter. Our system relies extensively on the PolymerJS library to create the components that make up the system, all components but the \emph{Frontcontroller} are polymer objects.
+In the previous chapter we talked about the design decisions and the elements or components that make up the system. We also looked at their definitions and the functionalities that they provide in our system. In this chapter we will look at the implementation of our system based on the designs we talked about in the previous chapter. Our system relies extensively on the PolymerJS library to create the components that make up the system, all components but the \emph{Frontcontroller} are polymer objects.
 \subsection{PolymerJS Framework}
 PolymerJS \cite{website:PolymerJS} is a JavaScript library that provides a set of features to create custom\footnote{user defined} elements in the browser. These features are designed to make it easier and faster to create custom elements that work like standard DOM.\footnote{DOM stands for Document Object Model - An API for XML and HTML documents} The figure \ref{fig:PolymerArch} below illustrates how PolymerJS works from a high-level perspective. 
 
@@ -41,7 +41,7 @@ Custom elements or components are created by extending the Polymer instance with
 \end{lstlisting}
 
 \subsection{Implementation of core components}
-We have looked at the structure of how each component is implemented in listing \ref{lst:Polymer} above, all components in the system have this underlying structure. In this section we will discuss and look at code snippeds of the core components of our system. The core components comprises: 
+We have looked at the structure of how each component is implemented in listing \ref{lst:Polymer} above, all components in the system have this underlying structure. In this section we will discuss and look at code snippets of the core components of our system. The core components comprises: 
 \begin{itemize}
     \item User Model,
     \item Recommendation Model,
@@ -96,7 +96,7 @@ listing \ref{lst:ruleObject} is the default rule structure that implements the s
     \item Title - Descriptive text to the rule( describes whether the rule being applied is the ``opposite sex with different grades'' or ``same sex with same grades''.
     \item Probability - This is computed by the history manager, as we will see later on in the paper. The rendering engine of the classroom canvas will apply the rule with the highest probability value.
     \item Token - The classroom rendering uses the token as the key to retrieve the rule it needs to apply.
-    \item size - corresponds to the size of the group or number of pupils sat together. 
+    \item Size - corresponds to the size of the group or number of pupils sat together. 
 \end{itemize}
  
 \begin{lstlisting}[caption={User Model Object Definition}, label={lst:UserModel}]
@@ -115,9 +115,9 @@ listing \ref{lst:ruleObject} is the default rule structure that implements the s
 Listing \ref{lst:UserModel} above illustrates the barebones structure of the User Model Object. It has four(4) main properties:
 \begin{itemize}
     \item ExperienceWithSystem - This is the average time spent using the system and its features. We represent time spent on the system as the user's experience because the more the user, uses the system the more the user knows about the system.So it is logical to represent this as time.
-    \item personal - Personal holds details on the user such as their name, sex and subject the user teaches.
-    \item adapt - Holds references to User Interface(UI) components that are currently adapting to the user's needs and preferences.
-    \item preferences - Stores information on what the user prefers, example position of the menu where as adapt holds references to the actual components responsible for the adaptations.
+    \item Personal - personal holds details on the user such as their name, sex and subject the user teaches.
+    \item Adapt - Holds references to User Interface(UI) components that are currently adapting to the user's needs and preferences.
+    \item Preferences - Stores information on what the user prefers, example position of the menu where as adapt holds references to the actual components responsible for the adaptations.
 \end{itemize}
 Below in listing \ref{lst:TimeLogs} we see how the user model computes the time spent on the system by the user.
 \begin{lstlisting}[caption={Calculating time spent on the system}, label={lst:TimeLogs}]
@@ -154,7 +154,7 @@ The function takes data retrieved from database as an argument, iterates this da
     }
 \end{lstlisting}
 
-The final product of the above functions and other small functions populates the \emph{User Model} object presented in \ref{lst:UserModel} through mechanisms that is mainly controlled by the function we are about to see in listing \ref{lst:Adaptation}
+The final product of the above functions and other small functions populates the \emph{User Model} object presented in \ref{lst:UserModel} through mechanisms that are mainly controlled by the function we are about to see in listing \ref{lst:Adaptation}
 \begin{lstlisting}[caption={Agent Worker thread - internal representation of User}, label={lst:Adaptation}]
     _internalRep = {
   actions: function () {
@@ -217,7 +217,7 @@ In \ref{sub:RM} we looked at the \emph{recommendation model} and its responsibil
       }
     }
 \end{lstlisting}
-The function shown in listing \ref{lst:textSearching} is responsible for a critical procedure in the \emph{recommendation model}, as it allows the model to break down any data into fragments that it can work with. A user may upload Comma Separated Values(CSV) with different headers or field names, so we needed a mechanism to formalise or standardise the CSV data uploaded so that regardless of the field names in the CSV the behaviour of our system with regards to processing data is always the same.
+The function shown in listing \ref{lst:textSearching} is responsible for a critical procedure in the \emph{recommendation model}, as it allows the model to break down any data into fragments that it can work with. A user may upload Comma Separated Values(CSV) with different headers or field names. Therefore we needed a mechanism to formalise or standardise the CSV data uploaded so that regardless of the field names in the CSV the behaviour of our system with regards to processing data is always the same.
 
 The result of this function is then passed to the function below in listing \ref{lst:sexPairing}. In the introductory chapter of this paper  \ref{sub:projectAims} we talked about the default rules that is used by the \emph{User Model} to create a collaborative seating plan. The code snippet below illustrates the implementation of how one of rules is interpreted by the \emph{Recommendation Model}. 
 
@@ -263,7 +263,7 @@ The purpose of this function is to split the data into two groups ``Male'' and `
     }
 \end{lstlisting}
 
-The method below in listing \ref{lst:findPairing}, given a student or pupil returns the opposite sex with a high or low grade. This computation meets one of the rules described in \ref{sub:projectAims}. 
+The method below in listing \ref{lst:findPairing}, demonstrates that; given a student or pupil it returns the opposite sex with a high or low grade. This computation meets one of the rules described in \ref{sub:projectAims}. 
 
 \begin{lstlisting}[caption={find grade pairing}, label={lst:findPairing}]
     function findGradePair(arrayToSearch, grade){
@@ -357,7 +357,7 @@ Listing \ref{lst:seatingCharacteristics} above steps through the result of \ref{
 The history manager uses these characteristics to update the rules\ref{lst:ruleObject} used in arranging seating plans. It computes the probability of known characteristics(eg.opposite sex with different grades), sorts the result in descending order (low to high). This makes it possible for the user to override the default rule. If the rule with the highest probability is ``same sex same grades'' then despite research suggesting the opposite is the optimal seating the system will apply a rule that operates on the logic that ``same sex same grades'' works well for the user. 
 
 \subsubsection{Classroom Canvas} \label{sub:classroomCanvas}
-We look at the implementation of \ref{sub:classroom}, the component responsible for rendering seating positions and pupil in our system. The snippet below illiustrates one of the steps the canvas engine takes when rendering. 
+We look at the implementation of \ref{sub:classroom}, the component responsible for rendering seating positions and pupils in our system. The snippet below illiustrates one of the steps the canvas engine takes when rendering. 
 \begin{lstlisting}[caption={Applies seating rules to individual pupil}, label={lst:ruleApply}]
     self.canvas.children.forEach(function(child,index, wholeArray){
        var others = wholeArray.slice(index+1);
@@ -380,12 +380,7 @@ We look at the implementation of \ref{sub:classroom}, the component responsible 
             })
         });
 \end{lstlisting}
-Listing \ref{lst:ruleApply} iterates through the canvas' chilren and for each of the applies the rules as can be seen on line 9 of the snippet above. 
-
-\begin{lstlisting}[caption={}, label={lst:}]
-    
-\end{lstlisting}
-
+Listing \ref{lst:ruleApply} iterates through the canvas' children and for each child the applies the rules as can be seen on line 9 of the snippet above. 
 \subsection{Other system components}
 \subsubsection{Frontcontroller}
 The front controller handles requests and navigation through the web application(system) as the user performs tasks. It is the main point of entry and is also responsible for instantiating the main component of our system and the firebase \cite{website:Firebase} that handles user authentication and database connection.
@@ -522,7 +517,7 @@ The app object is a mechanism that exposes system data and methods by giving it 
       });
 \end{lstlisting}
 
-One of the responsibilities of the frontcontroller is to providing navigation mechanism for the system. It routes requests to the relevant components as can be seen in listing \ref{lst:routing} line 6 through to line 23. The routing mechanism of the frontcontroller uses a PageJS \cite{website:VisionMedia} a client side router to map URL to components.  
+One of the responsibilities of the frontcontroller is to provide navigation mechanism for the system. It routes requests to the relevant components as can be seen in listing \ref{lst:routing} line 6 through to line 23. The routing mechanism of the frontcontroller uses a PageJS \cite{website:VisionMedia} a client side router to map URL to components.  
 
 \subsubsection{Toolbar}
 Listing \ref{lst:toolbarl} below illustrates how the toolbar component is implemented in our system. The toolbar alters its toolbar items to reflect the state of the system.The component has three main properties:
@@ -557,7 +552,7 @@ Listing \ref{lst:toolbarl} below illustrates how the toolbar component is implem
           }
     })();
 \end{lstlisting}
-The listing \ref{lst:toolbarConfig} below shows how the toolbar configures the tool bar items. It first checks the current state of the application and then using the application state as a key,  retrieves the value of the toolbarTools property that corresponds to it.
+The listing \ref{lst:toolbarConfig} below shows how the toolbar configures the tool bar items. It first checks the current state of the application and then using the application state as a key retrieves the value of the toolbarTools property that corresponds to it.
 If this value exists it is then pushed on to the toolbarList array.
 \begin{lstlisting}[caption={Configuring toolbar items}, label={lst:toolbarConfig}]
 _configureToolbarItems : function(){
@@ -572,6 +567,6 @@ _configureToolbarItems : function(){
         }
 \end{lstlisting}
 \subsection{Summary}
-In this chapter we looked at and briefly discussed PolymerJS framework on which the components of our system are derived, it then presented us with the implementation of the design of our system by talking us through some of the core algorithms of our system.
+In this chapter we looked at and briefly discussed PolymerJS framework on which the components of our system are derived. It then presented us with the implementation of the design of our system by talking us through some of the core algorithms of our system.
 
 

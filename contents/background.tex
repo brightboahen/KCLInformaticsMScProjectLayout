@@ -1,7 +1,7 @@
 \section{Design Requirements} \label{sec:designRequirements}
 \subsection{User Requirements} \label{sub:userRequirments}
 \subsubsection{Introduction}
-The project aims to develop a classroom management tool that works based on the theories discussed in the literature review chapter and also draws \emph{Adaptive User Interface} techniques to improve the users interaction with the systems interface. The following are what the user should require from the system. The requirements are given ranks.\footnote{ Mandatory :- the feature must be built into the final system; Desirable :- the feature must be built into the final system if time permits; Possible Enhancement :- the feature could be included as a future work} Table \ref{tab:user-requirements} contains a list of user requirements.
+The project aims to develop a classroom management tool that works based on the theories discussed in the literature review chapter and also draws \emph{Adaptive User Interface} techniques to improve the users interaction with the systems interface. The following lists what the user should require from the system. The requirements are given ranks.\footnote{ Mandatory :- the feature must be built into the final system; Desirable :- the feature must be built into the final system if time permits; Possible Enhancement :- the feature could be included as a future work} Table \ref{tab:user-requirements} contains a list of user requirements.
 \begin{longtable}{|L|c|L|}\hline
 %\begin{tabular}{|L|c|L|}\hline
 Requirement & Rank & Description \\\hline
@@ -35,7 +35,7 @@ Requirement & Description & Rationale \\\hline
 Authentication &\multicolumn{1}{m{4cm}|}{The user interface of the system must authenticate the user on registration and on logging in.} &  \multicolumn{1}{m{7cm}|}{This provides security and restricts access to system data and also allows the system to tailor its features and functionalities to the user based on their unique session ids.
 }\\\hline
 Account Creation & \multicolumn{1}{m{4cm}|}{The system must allow new users to the system to create their own accounts.} &  \multicolumn{1}{m{7cm}|}{This is the only mechanism through which potential users can obtain access to the system.}\\\hline
-Log in to user account & \multicolumn{1}{m{4cm}|}{The system must provide users the ability to sign into their account, if they are returning users.} &  \multicolumn{1}{m{7cm}|}{Users need to be able to return to use the system.}\\\hline
+Log in to user account & \multicolumn{1}{m{4cm}|}{The system must provide users the ability to sign into their account if they are returning users.} &  \multicolumn{1}{m{7cm}|}{Users need to be able to return to use the system.}\\\hline
 Log out of user account & \multicolumn{1}{m{4cm}|}{The system must provide users with the ability to log out of the system} &  \multicolumn{1}{m{7cm}|}{This allows the system to safely save the users state and protect the users data by protecting against unauthenticated access.}\\\hline
 New class groups & \multicolumn{1}{m{4cm}|}{The system must allow both new and old users to add new class groups to their workspace.} &  \multicolumn{1}{m{7cm}|}{Users are more likely to teach more than one class.}\\\hline
 CRUD Seating Arrangements & \multicolumn{1}{m{4cm}|}{The system must provide users the ability to CRUD\footnote{Create, Update, Delete} seating arrangements or plans on the user interface.This feature must be adaptive in that, it should alter seating rules to suit the preferences of the user.} &  \multicolumn{1}{m{7cm}|}{This is the core functionality of the system, the system would not be a classroom management tool if it lacked the ability to perform seating arrangements.}\\\hline
@@ -63,7 +63,7 @@ The purpose of the project revolves around the ease of use of a classroom manage
 The system shall provide reliability with regards to its ability to perform required functions.Data storage and retrieval, access control are provided by a state of the art system that is Firebase. The systems clean user interface shall be reliable in creating a classroom space and suggesting the optimal seating arrangement for the user.The metric to measure our systems reliability is the consistency with which it presents contents\footnote{Content in this context refers to classes, year groups and pupil or student data} 
 
 \subsubsection{Performance}
-Performance with regards to this project is concerned with the interfaces reaction to how the user uses the system and how it makes recommendations to the user. The system shall start monitoring the user immediately after the sign up process and resume on subsequent sign ins. Our systems performance is measure by the time it takes to render pupils in the classroom with the required colour outline as per the adaptation rule.
+Performance with regards to this project is concerned with the interfaces reaction to how the user uses the system and how it makes recommendations to the user. The system shall start monitoring the user immediately after the sign up process and resume on subsequent sign ins. Our systems performance is measured by the time it takes to render pupils in the classroom with the required colour outline as per the adaptation rule.
 
 \section{System Design}
 
@@ -81,10 +81,10 @@ Controllability, predictability and transparency are some of the important influ
 \end{figure}
 
 
-The user of our system mainly interacts with the UI(User Interface) performing all relevant actions and steps, the UI contains the classroom area but the component responsible for the functionality operates in isolation much like all the other components in that it gathers information from the user that the general UI component does not have access to. Example the seating arrangement currently on the canvas(seating floor). A \emph{User Model} is created out of the information gathered by these components.
+The user of our system mainly interacts with the UI(User Interface) performing all relevant actions and steps. The UI contains the classroom area but the component responsible for the functionality operates in isolation much like all the other components in that it gathers information from the user that the general UI component does not have access to. Example the seating arrangement currently on the canvas(seating floor). A \emph{User Model} is created out of the information gathered by these components.
 
 \subsection{User Model} \label{sub:UserModel}
-The principal purpose of adaptation is to offer a simple, powerful and efficient interface to the user. We will be developing a system that offers such an interface by using the \emph{User Model} approach. By definition a \emph{User Model} is a representation of the knowledge and preferences of the user, these representations are depicted in the form of variables in the system. At the lower-level the user model is indeed an algorithm that creates an object with rules, the rules are then interpreted at the UI level to a user profile.
+The principal purpose of adaptation is to offer a simple, powerful and efficient interface to the user. We will be developing a system that offers such an interface by using the \emph{User Model} approach. By definition a \emph{User Model} is a representation of the knowledge and preferences of the user. These representations are depicted in the form of variables in the system. At the lower-level the user model is indeed an algorithm that creates an object with rules. The rules are then interpreted at the UI level to a user profile.
 
 \subsection{User Interface}
 Creating an interface with complete autonomy comes at a cost, as it affects the usability of the whole system.  We take the \emph{User Model} approach as it will not reduce the usability of the system. \emph{User Model} allows us to be able to identify tasks that we can assist the user in, by performing user analysis. \emph{User Analysis} comprises what the user needs to do in the system and what the user will do with the system.
@@ -96,11 +96,11 @@ We will only adapt :
     \item to the needs of intermittent and discretionary users. \cite{benyon1993adaptive} 
 \end{itemize}
 
-We can achieve this through a \emph{User Model} because we have a representation of the users and their interaction with the system, we can alter the interface without costing the user clarity in interaction.
+We can achieve this through a \emph{User Model} because we have a representation of the users and their interaction with the system. We can alter the interface without costing the user clarity in interaction.
 
 
 \subsection{User Modeling}
-User Modeling is the process of obtaining information about the user, this can done in numerous ways but we gather information:
+User Modeling is the process of obtaining information about the user. This can done in numerous ways but we gather information:
 \begin{itemize}
     \item  implicitly,
     \item  explicitly.
@@ -119,7 +119,7 @@ The classroom canvas is used to create and update seating plans. This is where t
 The recommendation model is an algorithm that recommends optimal seating arrangements based on the user model (specifically the highest rated seating arrangements), by analysing the user model and proposing an adaptation rule that reflects the seating arrangement preferences of the user. 
 
 \subsection{Web Workers} \label{sub:webworkers}
-The core components of our system are the User and Recommendation Models; these have been designed to work in the background thread as web workers so as to not slow down the rendering of the user interface whiles these models perform computations. ``Web Workers are a mechanism by which a script operation can be made to run in a background thread separate from the main execution thread of a web application. The advantage of this is that laborious processing can be performed in a separate thread, allowing the main (usually the UI) thread to run without being blocked/slowed down''.\cite{website:Mozilla-WebWorkers}
+The core components of our system are the User and Recommendation Models; these have been designed to work in the background thread as web workers so as to not slow down the rendering of the user interface whiles these models perform computations. ``Web Workers are a mechanism by which a script operation can be made to run in a background thread separate from the main execution thread of a web application. The advantage of this is that laborious processing can be performed in a separate thread, allowing the main (usually the UI) thread to run without being blocked or slowed down''.\cite{website:Mozilla-WebWorkers}
 \section{System Architecture}
 \subsubsection{Overview}
 In the previous section we looked at and briefly described the main design elements or components that make up the system.This section introduces the architectural style used to implement our system. 
@@ -149,11 +149,12 @@ In the header section of our system we display the year groups. Year groups are 
 
 \subsubsection{Classroom}
 The classroom component comprises a canvas on which seating arrangements are rendered as described in \ref{sub:classroom}. 
+
 \subsubsection{History Manager} \label{sub:historyManager}
-This component as the name implies holds references to all seating arrangements saved by the user in the system, each reference is an instance of another component called ``historyItem''. 
+This component as the name implies holds references to all seating arrangements saved by the user in the system. Each reference is an instance of another component called ``historyItem''. 
 
 \subsection{Component Architecture}
-In the overview sub section of this section we mentioned \emph{Plug and play architectural} style, each functionality in our system is provided by a component that operates in isolation. This makes it possible for us to remove a component and replace it with another. \cite{clemens1998component} defines a component as a unit of composition with contractually specified interfaces and explicit context dependencies, a software component can be deployed independently and is subject to third part composition.
+In the overview sub section of this section we mentioned \emph{Plug and play architectural} style. Each functionality in our system is provided by a component that operates in isolation. This makes it possible for us to remove a component and replace it with another. \cite{clemens1998component} defines a component as a unit of composition with contractually specified interfaces and explicit context dependencies, a software component can be deployed independently and is subject to third part composition.
 \subsubsection{Web components} \label{sub:webComponents}
 Our components are developed based on the \emph{Web Components}\footnote{ Web component in our system is based on PolymerJS framework} standards. \cite{website:Mozilla-Developer}. A web component is a reusable interface widget that is created with open web technologies. \footnote{Open web technologies like standard HTML elements} 
 

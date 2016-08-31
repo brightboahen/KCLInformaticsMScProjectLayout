@@ -164,15 +164,14 @@
 \begin{minipage}{\textwidth}
 	\begin{framed}
 		\begin{center}
-			\textbf{RELEASE OF PRODUCT}
-		\end{center}
-		Following the submission of your project, the Department would like to make it publicly available via the library electronic resources. You will retain copyright of the project.
+			\textbf{Plagiarism Statement}
+		\end{center} 
+All work submitted as part of the requirements for any examination or assessment must be expressed in your own words and incorporates your own ideas and judgements. Plagiarism is the taking and using of another person’s thoughts, words, judgements, ideas, etc., as your own without any indication that they are those of another person.Plagiarism is a serious examination offence. An allegation of plagiarism can result in action being taken under the \emph{B3 Misconduct Regulations}.
 	\end{framed}
-
 	\begin{flushleft}
 		\ifkclthesis@releaseproject
-			$\CheckedBox$ I \textbf{agree} to the release of my project\\
-			$\square$ I \textbf{do not} agree to the release of my project	
+			I \textbf{acknowledge} that I have read and understood the above information and that the work I am submitting is my own. 
+\\
 		\fi
 		\ifkclthesis@notreleaseproject
 			$\square$ I \textbf{agree} to the release of my project\\
@@ -187,7 +186,7 @@
 	\end{flushleft}
 \end{minipage}
 
-\vspace{1.5cm}
+\vspace{1.0cm}
 
 \begin{minipage}{0.5\textwidth}
 \begin{flushleft}

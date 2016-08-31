@@ -4,7 +4,7 @@ The previous chapter guided as through the implementation of the design of our s
 \subsection{Methodology}
 This section presents the methods used in testing the functionalities and features of our system and how well our system performed under each method.
 \subsubsection{Browser Tests}
-A web browser \footnote{A software to display HTML and interpret JavaScript} was used in evaluating our system as our system operates in a browser setting. There are several web browsers and our system needs to behave in a consistent manner across all the browser platforms. Our system uses some experimental features that are not implemented on all browsers yet, due to this the browser test was predominantly performed on google chrome. \cite{website:GoogleChrome}
+A web browser \footnote{A software to display HTML and interpret JavaScript} was used in evaluating our system as our system operates in a browser setting. There are several web browsers and our system needs to behave in a consistent manner across all the browser platforms. Our system uses some experimental features that are not implemented on all browsers yet. Due to this the browser test was predominantly performed on google chrome. \cite{website:GoogleChrome}
 The figure \ref{fig:homeScreen} below shows how google chrome rendered our system's UI.
 \begin{figure}[!ht]
 \caption{Google Chrome : Rendering of our system's home Screen}
@@ -98,13 +98,14 @@ Table \ref{tab:user-testing1} illustrates the response of the user after her fir
 Table \ref{tab:user-testing2} illustrates the response of the user after her second encounter with our system.
 
 From tables \ref{tab:user-testing1} and \ref{tab:user-testing2} we can see that the users perception of our system improved, that is she found it more clear the second time although the level of clarity was average the first time and the level of cognition( that is the thinking she had to do) also reduced dramatically on her second attempt. 
+
 \subsubsection{Remarks on tests}
-We based based the user tests in  \ref{sub:user-testing} on two main concepts.
+We based the user tests in  \ref{sub:user-testing} on two main concepts.
 \begin{itemize}
     \item Clarity,
     \item Cognitive Skills.
 \end{itemize}
-This is because we can use these two as a metric to judge the system whether it meets all the user requirements mentioned in \ref{sub:userRequirments} . Clarity involves all the steps of the use while performing their tasks in the system and cognitive skills involves how hard they have had to think about their tasks. A high cognitive value would indicate the system is not achieving its adaptivity requirement and if they steps are not clear enough the user cannot perform their tasks. The system fails its overall aim.
+This is because we can use these two as a metric to judge the system whether it meets all the user requirements mentioned in \ref{sub:userRequirments} . Clarity involves all the steps of the user uses while performing their tasks in the system and cognitive skills involves how hard they have had to think about their tasks. A high cognitive value would indicate the system is not achieving its adaptivity requirement and if the steps are not clear enough the user cannot perform their tasks. As a result the sytem fails its overall aim.
 
 The result from the tests in \ref{tab:user-testing1} and \ref{tab:user-testing2} cannot be conclusive as we were only able to get one serious user to undertake the test. It may not be conclusive but it gave us an indication of the potential of the system in achieving its goals. We also could not conduct real time test by asking teachers to use the system for a class and report on how well the seatings recommended by the system performed.
 
@@ -114,25 +115,33 @@ This section assesses the results of our system against the mandatory requiremen
 \begin{longtable}{|L|c|L|}\hline
 Requirement & Status & Comment \\\hline
 Account Registration & Complete &  \multicolumn{1}{m{7cm}|}{The user can create or register an account with our system, by selecting the create account button on the user interface.}\\\hline
-Login & Complete  &  \multicolumn{1}{m{7cm}|}{ Our system provides a registered user the functionality to access system features}\\\hline
-Logout & Complete  &  \multicolumn{1}{m{7cm}|}{ Our system provides the user with logout functionality to safely leave the system}\\\hline
-Add class groups & Complete  &  \multicolumn{1}{m{7cm}|}{The user is able add a new class group to his or her workspace}\\\hline 
+Login & Complete  &  \multicolumn{1}{m{7cm}|}{ Our system provides a registered user the functionality to access system features.}\\\hline
+Logout & Complete  &  \multicolumn{1}{m{7cm}|}{ Our system provides the user with logout functionality to safely leave the system.}\\\hline
+Add class groups & Complete  &  \multicolumn{1}{m{7cm}|}{The user is able add a new class group to his or her workspace.}\\\hline 
 Create seating arrangements & Complete  &  \multicolumn{1}{m{7cm}|}{The user is able create seating arrangements by dragging and dropping models of students on the classroom canvas.}\\\hline
 Upload pupil data & Complete  &  \multicolumn{1}{m{7cm}|}{The user is able to upload data in CSV format.}\\\hline
-Save seating plans & Complete &  \multicolumn{1}{m{7cm}|}{The user is able to save new seating plans through the history manager}\\\hline
-Retrieve seating plans & Complete &  \multicolumn{1}{m{7cm}|}{The user is able to retrieve old seating arrangements through the history manager }\\\hline
-Update seating plans & Complete &  \multicolumn{1}{m{7cm}|}{The user is able to update existing seating arrangements through the history manager}\\\hline
-Scoring System & Complete &  \multicolumn{1}{m{7cm}|}{The user is able to evaluate a seating arrangement or plan through the history item score mechanism}\\\hline
-Seating Recommendation & Complete  &  \multicolumn{1}{m{7cm}|}{Our system is able to recommend to the user, based on the rules implicitly inferred from saved seating arrangements with highest score}\\\hline
-User Monitoring & Complete &  \multicolumn{1}{m{7cm}|}{The system is able to track the user's system usage by recording times the log in and out of the system, the features they frequently use or spend most time. }\\\hline
+Save seating plans & Complete &  \multicolumn{1}{m{7cm}|}{The user is able to save new seating plans through the history manager.}\\\hline
+Retrieve seating plans & Complete &  \multicolumn{1}{m{7cm}|}{The user is able to retrieve old seating arrangements through the history manager. }\\\hline
+Update seating plans & Complete &  \multicolumn{1}{m{7cm}|}{The user is able to update existing seating arrangements through the history manager.}\\\hline
+Scoring System & Complete &  \multicolumn{1}{m{7cm}|}{The user is able to evaluate a seating arrangement or plan through the history item score mechanism.}\\\hline
+Seating Recommendation & Complete  &  \multicolumn{1}{m{7cm}|}{Our system is able to recommend to the user, based on the rules implicitly inferred from saved seating arrangements with highest score.}\\\hline
+User Monitoring & Complete &  \multicolumn{1}{m{7cm}|}{The system is able to track the user's system usage by recording times that they log in and out of the system and the features they frequently use or spend most time using. }\\\hline
 \caption{\label{tab:requirements-evaluation}Table of requirements and their evaluation}
 \end{longtable}
+
 \subsubsection{Design}
-Our system has been designed to be transparent and an enjoyable experience for the user. Our evaluation of the system with regards to transparency and enjoyable experience as a result of user testing \ref{sub:user-testing} is inconclusive. The only user used in testing gave a general feedback that showed our system met its transparency and enjoyable design but that is the view of one user.
+Our system has been designed to be transparent and an enjoyable experience for the user. Our evaluation of the system with regards to transparency and enjoyable experience as a result of user testing \ref{sub:user-testing} is inconclusive. The only user used in testing gave a general feedback that showed our system met its transparency and enjoyable design but that is the view of one user. The system's \emph{User Monitoring System} as a unit performs effectively but not consistent when in use in the whole system. Example if the user leaves the application without logging out, their tracking becomes inconsistent in terms of time spent because the system has no way of detecting whether they left the system in the previous session.
+
+The system's user interface adaptivity performs well but due to the fact that we are not catching the some errors in our source code. The behaviour of the components on the \emph{user interface} is inconsistent and unpredictable.
+
+\cite{OFSTED} reports that the best and optimal classroom size is 30. Our system takes this approach but as a system with an adaptive user interface. The user should be able to customise this feature to allow classes of any size. 
+
+
+
 \subsubsection{Similar Systems}
 In the literature review chapter of this paper we discussed existing systems. In this sub section we will evaluate our system's result against some of these systems.
 
-Our system is able to recommend optimal seating arrangements, pairings using rules that have not been used in any of the existing systems. The system is also able to monitor the users activities, a feature missing in the other system due to their rigid nature. This is supported by the JSON(JavaScript Object Notation) extracted from the system's database in listing \ref{lst:modelRep}.
+Our system is able to recommend optimal seating arrangements and pairings using rules that have not been used in any of the existing systems. The system is also able to monitor the users activities, a feature missing in the other system due to their rigid nature. This is supported by the JSON(JavaScript Object Notation) extracted from the system's database in listing \ref{lst:modelRep}.
 \begin{lstlisting}[caption={User Tracking Model Representation}, label={lst:modelRep}]
       "myRep" : {
     "CE33hObsZDU4E6dyL3KLcauCK7a2" : {
